@@ -1,122 +1,4 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Our Beloved Books</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-        <meta name="keywords" content="books, reviews, book reviews, community, discussion group, teenagers, books for teens">
-        <meta name="description" content="Our Beloved Books is fostered to teenagers who love books. Here, we provide book reviews and analysis, as well as a community group for the curious to ask book-related questions!">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    </head>
-    <style>
-        #tagsf, #tagsb, #authsf, #tagsfc {
-            /* Remove default list styling */
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #tagsf li, #tagsb li, #authsf li, #tagsfc li {
-            border: 1px solid #ddd; /* Add a border to all links */
-            margin-top: -1px; /* Prevent double borders */
-            background-color: #f6f6f6; /* Grey background color */
-            padding: 12px; /* Add some padding */
-            text-decoration: none; /* Remove default text underline */
-            font-size: 18px; /* Increase the font-size */
-            color: black; /* Add a black text color */
-            display: block; /* Make it into a block element to fill the whole list */
-        }
-
-        #tagsf li:hover, #tagsb li:hover, #authsf li:hover, #tagsfc li:hover {
-            background-color: #eee; /* Add a hover effect to all links, except for headers */
-        }
-
-        .selected {
-            background-color: rgb(21, 21, 118);
-            color: white;
-            border-radius: 12px;
-            border: 2px solid black;
-            padding: 1px 5px 1px 5px;
-            margin: 5px;
-        }
-
-    </style>
-    <body style="background-color: rgb(214, 231, 255); margin: 0 !important; ">
-        <div class="navbar navbar-expand-lg" id="header" style="max-width:100vw;">
-            <div class="container-fluid row">
-                <div class="navbar-brand col-6">
-                    <h3 onclick="window.location.href = '/'">⭐ Our Beloved Books</h3>
-                </div>
-                <div class="col-2" style="float: left;">
-                    <a class="navlink" href="/community"><h4>Community</h4></a>
-                </div>
-                <div class="col-2" style="float: left;">
-                    <a class="navlink" href="/reviews"><h4>Reviews</h4></a>
-                </div>
-                <div class="col-2" style="float: left;">
-                    <div class="dropdown">
-                        <button type="button" style="all: unset; font-family: 'Nerko One', cursive;
-                        font-weight: 400;
-                        font-style: normal;
-                        font-size: 1.4em;
-                        padding: 5px;
-                        color: #0f434d;
-                        display: flex;
-                        align-items: center;
-                        flex-wrap: wrap;" class="navlink h-25" data-toggle="dropdown">
-                          Account &nbsp; <i class="fa fa-user-circle"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">Profile</a>
-                          <a class="dropdown-item" href="#">Settings</a>
-                          <a class="dropdown-item" href="#">Inbox</a>
-                          <a class="dropdown-item" href="#">Signout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="offcanvas offcanvas-start exception" id="menubar" style="margin:0 !important; text-align: left; padding-left: 2em;">
-            <div class="offcanvas-header exception" style="text-align: left; align-items: center;">
-                <h1 class="offcanvas-title" style="display: flex; align-items: center;">Menu</h1>
-                <button style="line-height: 1.7em; height: 1.7em; 
-                all: unset; border: none; background: none; color: black; font-size: 2em !important;" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas">
-                    x
-                </button>
-              </div>
-              <div class="offcanvas-body exception">
-                <a class="classica" href="/reviews"><h4>Reviews</h4></a><br>
-                <a class="classica" href="/community"><h4>Community</h4></a><br>
-                <a class="classica" href="/profile"><h4>Profile</h4></a>
-              </div>
-        </div>
-
-        <div class="navbar navbar-expand-lg" id="headeralternative" style="display: none; max-width: 100vw !important;">
-            <div class="container-fluid row">
-                <div class="col-1">
-                    <button style="all: unset; font-size: 2em; color: black;" class="btn btn-primary ham" type="button" data-bs-toggle="offcanvas" data-bs-target="#menubar">&equiv;</button>
-                </div>
-                <div class="navbar-brand col-11">
-                    <h3 class='display-5' onclick="window.location.href = '/'" style="padding-left: 5vw; padding-top: 1vw;">Our Beloved Books</h3>
-                </div>
-            </div>
-        </div>
-
+<%- head %>
         <div style="padding: 1em;" class="row">
             <h2>All Books</h2>
             <p>Know a book that is not on this list? Add it to our collection to help OBB grow! <button onclick="showcreate()">Add a book!</button></p>
@@ -227,10 +109,41 @@
             </div>
         </div>
         
-        <footer style="margin: 0; padding: 1em; background-color: rgb(66, 37, 211); color: white;">
-            <h2>Copyright © 2024 Our Beloved Books. All rights reserved.</h2>
-        </footer>
+        <%- footer %>
         
+        <style>
+            #tagsf, #tagsb, #authsf, #tagsfc {
+                /* Remove default list styling */
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+    
+            #tagsf li, #tagsb li, #authsf li, #tagsfc li {
+                border: 1px solid #ddd; /* Add a border to all links */
+                margin-top: -1px; /* Prevent double borders */
+                background-color: #f6f6f6; /* Grey background color */
+                padding: 12px; /* Add some padding */
+                text-decoration: none; /* Remove default text underline */
+                font-size: 18px; /* Increase the font-size */
+                color: black; /* Add a black text color */
+                display: block; /* Make it into a block element to fill the whole list */
+            }
+    
+            #tagsf li:hover, #tagsb li:hover, #authsf li:hover, #tagsfc li:hover {
+                background-color: #eee; /* Add a hover effect to all links, except for headers */
+            }
+    
+            .selected {
+                background-color: rgb(21, 21, 118);
+                color: white;
+                border-radius: 12px;
+                border: 2px solid black;
+                padding: 1px 5px 1px 5px;
+                margin: 5px;
+            }
+    
+        </style>
         <script src="script.js" async defer></script>
     <script>
         const sleep = (milliseconds) => {
@@ -787,14 +700,4 @@
             }
         }
     </script>
-        <script type="text/javascript" src=
-"https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script type="text/javascript"
-        src=
-"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script type="text/javascript"
-        src=
-"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    </body>
-</html>
+<%- end %>

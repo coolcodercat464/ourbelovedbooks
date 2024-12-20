@@ -121,13 +121,13 @@ a.classica {
 /* Buttons */
 @property --buttonbg1 {
   syntax: '<color>';
-  initial-value: transparent;
+  initial-value: #bae8ff ;
   inherits: false;
 }
 
 @property --buttonbg2 {
   syntax: '<color>';
-  initial-value: transparent;
+  initial-value: #a4daf5 ;
   inherits: false;
 }
 
