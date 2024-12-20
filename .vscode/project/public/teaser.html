@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Our Beloved Books</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+        <meta name="keywords" content="books, reviews, book reviews, community, discussion group, teenagers, books for teens">
+        <meta name="description" content="Our Beloved Books is fostered to teenagers who love books. Here, we provide book reviews and analysis, as well as a community group for the curious to ask book-related questions!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    </head>
+    <body style="background-color: rgb(214, 231, 255); margin: 0 !important; ">
+        <div class="navbar navbar-expand-lg" id="header" style="max-width:100vw;">
+            <div class="container-fluid row">
+                <div class="navbar-brand col-8">
+                    <h3 onclick="window.location.href = '/'">⭐ Our Beloved Books</h3>
+                </div>
+                <div class="col-2" style="float: left;">
+                    <a class="navlink h-25" href="/signup">Signup</a>
+                </div>
+                <div class="col-2" style="float: left;">
+                    <a class="navlink h-25" href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="offcanvas offcanvas-start exception" id="menubar" style="margin:0 !important; text-align: left; padding-left: 2em;">
+            <div class="offcanvas-header exception" style="text-align: left; align-items: center;">
+                <h1 class="offcanvas-title" style="display: flex; align-items: center;">Menu</h1>
+                <button style="line-height: 1.7em; height: 1.7em; 
+                all: unset; border: none; background: none; color: black; font-size: 2em !important;" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas">
+                    x
+                </button>
+              </div>
+              <div class="offcanvas-body exception">
+                <a class="classica" href="/login"><h4>Login</h4></a><br>
+                <a class="classica" href="/signup"><h4>Signup</h4></a><br>
+                <a class="classica" href="/about"><h4>About</h4></a>
+              </div>
+        </div>
+
+        <div class="navbar navbar-expand-lg" id="headeralternative" style="display: none; max-width: 100vw !important;">
+            <div class="container-fluid row">
+                <div class="col-1">
+                    <button style="all: unset; font-size: 2em; color: black;" class="btn btn-primary ham" type="button" data-bs-toggle="offcanvas" data-bs-target="#menubar">&equiv;</button>
+                </div>
+                <div class="navbar-brand col-11">
+                    <h3 class='display-5' onclick="window.location.href = '/'" style="padding-left: 5vw; padding-top: 1vw;">Our Beloved Books</h3>
+                </div>
+            </div>
+        </div>
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <br>
+
+        <div style="padding-left: 1em; padding-right: 1em;">
+            <div class="row">
+                <div class="col-xl-7">
+                    <h4 class="display-5"><b>A Book Club Just For Children</b></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                        optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+                    <div class="row">
+                        <div class="col-lg-6" style="text-align: center; padding-bottom: 5px;">
+                            <div style="text-align: center;">
+                                <button onclick="window.location.href='/login'" style="font-size: 1.5em; padding: 0.5em 1em 0.5em 1em; width: 80%" class="button-2"><b>Login</b></button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style="text-align: center">
+                            <div style="text-align: center;">
+                                <button onclick="window.location.href='/signup'" style="font-size: 1.5em; padding: 0.5em 1em 0.5em 1em; width: 80%" class="button-2"><b>Signup</b></button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-xl-5" style="overflow-x: hidden;">
+                    <img src="images/books.jpg" style="width: 100%; height: 20vh; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="exception">
+            <div class="row exception" style="text-align: center; margin: 0 !important; max-width: 100vw !important; padding: 10px; background-color: #949999;">
+                <div class="col-sm-4">
+                    <h4 class="display-5"><b>200K</b></h4>
+                    <h5 class="display-6">users</h5>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="display-5"><b>1000+</b></h4>
+                    <h5 class="display-6">reviews</h5>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="display-5"><b>50M</b></h4>
+                    <h5 class="display-6">posts</h5>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div style="padding-left: 1em; padding-right: 1em;"></div>
+            <div class="row">
+                <div class="col-xl-7 order-xl-2">
+                    <h4 class="display-5"><b>OBB is a New Startup!</b></h4>
+                    <p>OBB is a new, growing student-created database for all genres and all styles of books. Primarily created for the benefit of children and adults, OBB is the latest advancement in helping people read with more joy.</p>
+                    <div class="row">
+                        <div class="col-lg-6" style="text-align: center; padding-bottom: 5px;">
+                            <div style="text-align: center;">
+                                <button style="font-size: 1.5em; padding: 0.5em 1em 0.5em 1em; width: 80%" class="button-2"><b>Join the Action!</b></button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style="text-align: center">
+                            <div style="text-align: center;">
+                                <button style="font-size: 1.5em; padding: 0.5em 1em 0.5em 1em; width: 80%" class="button-2"><b>About Us</b></button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-xl-5 order-xl-1" style="overflow-x: hidden; margin-right: 5px;">
+                    <img src="images/books.jpg" style="width: 100%; height: 25vh; object-fit: cover;">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xl-6">
+                    <h4 class="display-5"><b>Our Mission</b></h4>
+                    <p>OBB is a website set up by four students made to assist children in their learning. Our amazing tools and huge student database makes reading books even more enjoyable to the wide society.OBB is a website set up by four students made to assist children in their learning. Our amazing tools and huge student database makes reading books even more enjoyable to the wide society.</p>
+                    <br>
+                </div>
+                <div class="col-xl-6">
+                    <div style="border-radius: 20px; background-color:rgb(187, 190, 194); padding: 10px; padding-left: 20px; border: 2px solid black;">
+                        <blockquote>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <footer>
+                                <cite>
+                                    a cool user
+                                </cite>
+                            </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <h4 class="display-5"><b>What we offer</b></h4>
+                <div class="row" style="text-align: center;">
+                    <div class="col-sm-4">
+                        <p><i class="fas fa-book-reader" style="font-size: 2em"></i><br>High-quality book reviews suited to the teenaged reader</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><i class='fas fa-globe' style="font-size: 2em"></i><br>Online Community to discuss the interesting ideas in our books</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><i class='fas fa-user-alt' style="font-size: 2em"></i><br>Book recommendations based on your preferences</p>
+                    </div>  
+                </div>
+            </div>
+
+            <div id="slideshow" class="carousel slide carousel-dark" data-bs-ride="carousel" style="overflow-y: auto; padding-bottom: 2em; background-color: white;">
+                <h4 class="display-5" style="text-align: center; margin: 5px;"><b>Our Values</b></h4>
+                <div class="carousel-inner">
+                    <div class="carousel-item active h-90">
+                        <img src= "images/engagement.png" class="mx-auto d-block h-80" style="height: 50vh;">
+                        <div class="position-relative d-none d-md-block" style="padding-left: 20vw; padding-right: 20vw;">
+                            <h5>Engagement</h5>
+                            <p>Our online community can help young readers stay engaged with the content they're reading.
+                                OBB doesn't focus only on comprehending the reading material, but also critically
+                                analysising it and responding to it to build your own opinion. This way, you can
+                                get the most out of your book!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-90">
+                        <img src= "images/safety.png" class="mx-auto d-block h-80" style="height: 50vh;">
+                        <div class="position-relative d-none d-md-block" style="padding-left: 20vw; padding-right: 20vw;">
+                            <h5>Security</h5>
+                            <p>Security is the top priority for us, so security was a major consideration when we
+                                coded up this website. We use trustworthy sources to keep your information safe.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-90">
+                        <img src= "images/school.png" class="mx-auto d-block h-80" style="height: 50vh;">
+                        <div class="position-relative d-none d-md-block" style="padding-left: 20vw; padding-right: 20vw;">
+                            <h5>Schoolwork</h5>
+                            <p>English exams can be frightening and confusing, but OBB's detailed and easy-to-read analysis
+                                on many common books, including Shakespeare's <i>Romeo and Juliet</i>, are written by other
+                                school students to give you a firm grasp on what you need to know to prepare for your
+                                next English exam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="prev" class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button id="next" class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div id="slideshowalternative" style="display: none; padding-bottom: 2em; background-color: white">
+                <h4 class="display-5" style="text-align: center; margin: 5px;"><b>Our Values</b></h4>
+                <img src= "images/engagement.png" class="mx-auto d-block" style="width: 100%">
+                <div style="padding-left: 6vw; padding-right: 6vw; text-align: center">
+                    <h5>Engagement</h5>
+                    <p>Our online community can help young readers stay engaged with the content they're reading.
+                        OBB doesn't focus only on comprehending the reading material, but also critically
+                        analysising it and responding to it to build your own opinion. This way, you can
+                        get the most out of your book!
+                    </p>
+                </div>
+
+                <img src= "images/safety.png" class="mx-auto d-block" style="width: 100%">
+                <div style="padding-left: 6vw; padding-right: 6vw; text-align: center">
+                    <h5>Security</h5>
+                    <p>Security is the top priority for us, so security was a major consideration when we
+                        coded up this website. We use trustworthy sources to keep your information safe.
+                    </p>
+                </div>
+
+                <img src= "images/school.png" class="mx-auto d-block" style="width: 100%">
+                <div style="padding-left: 6vw; padding-right: 6vw; text-align: center">
+                    <h5>Schoolwork</h5>
+                    <p>English exams can be frightening and confusing, but OBB's detailed and easy-to-read analysis
+                        on many common books, including Shakespeare's <i>Romeo and Juliet</i>, are written by other
+                        school students to give you a firm grasp on what you need to know to prepare for your
+                        next English exam.
+                    </p>
+                </div>
+
+                <div style="text-align: center;">
+                    <button style="font-size: 1.5em; padding: 0.5em 1em 0.5em 1em; width: 80%" class="button-2"><b>Get Involved Today!</b></button>
+                </div>
+            </div>
+            <br>
+            <div>
+                <h4 class="display-5" style="text-align: center; margin: 5px;"><b>Top Recommendations</b></h4>
+                <div class="row">
+                    <div class="col-xxl-6" style="padding: 0;">
+                        <div class="card" style="width:100%; height: 100%; padding: 2em; text-align: left;">
+                            <div class="previewtitle">
+                                <h3 class="card-title titles">Percy Jackson</h3>
+                                <h6 class="card-subtitle mb-2 text-muted">Mythology, Action</h6>
+                            </div>
+                            <p class="card-text">A twelve-year-old Percy discovers he’s a demigod, 
+                                the son of Poseidon! As he navigates the challenges of 
+                                adolescence and ancient mythology, Percy must embark on a thrilling 
+                                quest to retrieve Zeus’s stolen lightning bolt, all while battling 
+                                mythical monsters and uncovering secrets about his past. Packed 
+                                with humor, adventure, and heart, this modern twist on Greek mythology 
+                                is loved by many on OBB! <b>~ Recommended by Anthony</b></p>
+                        </div>
+                    </div>
+                    <div class="col-xxl-6" style="padding: 0">
+                        <div style="max-width: 100vw !important;">
+                            <img src="images/percy jackson.jpg" style="width: 100%; object-fit: cover; border-radius: 0 10px 10px 0">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-6 order-xxl-2" style="padding: 0;">
+                        <div class="card" style="width:100%; height: 100%; padding: 2em; text-align: left;">
+                            <div class="previewtitle">
+                                <h3 class="card-title titles">Harry Potter</h3>
+                                <h6 class="card-subtitle mb-2 text-muted">Fantasy, Magic, Friendship, Action</h6>
+                            </div>
+                            <p class="previewsummary card-text">Step into the enchanting world of <i>Harry Potter and the 
+                                Sorcerer's Stone</i>, where eleven-year-old Harry discovers he’s a wizard destined 
+                                for greatness. After a lifetime of neglect, he receives a letter inviting 
+                                him to Hogwarts School of Witchcraft and Wizardry, where magic is real and 
+                                adventure awaits. As Harry makes new friends and uncovers the mysteries of 
+                                his past, he must confront the dark forces that threaten his new world. 
+                                Filled with wonder, friendship, and courage, this timeless classic will 
+                                sweep you into a realm where anything is possible! <b>~ Recommended by Anthony</b></p>
+                        </div>
+                    </div>
+                    <div class="col-xxl-6 order-xxl-1 enticerimg" style="padding: 0;">
+                        <div style="max-width: 100vw !important;">
+                            <img src="images/harry potter.jpg" style="width: 100%; object-fit: cover; border-radius: 10px 0 0 10px">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-6" style="padding: 0;">
+                        <div class="card" style="width:100%; height: 100%; padding: 2em; text-align: left;">
+                            <div class="previewtitle">
+                                <h3 class="card-title titles">Keeper of the Lost Cities</h3>
+                                <h6 class="card-subtitle mb-2 text-muted">Historical Fiction, War, Realism, Friendship, Compassion, Tradegy</h6>
+                            </div>
+                            <p class="previewsummary card-text">A twelve-year-old Sophie Foster discovers she’s 
+                                not just an ordinary girl but a powerful telepath with a mysterious past. 
+                                When she’s whisked away to a magical realm filled with fantastical 
+                                creatures and hidden dangers, Sophie must navigate the complexities 
+                                of her new life while uncovering secrets that could change everything. 
+                                With the fate of both her worlds hanging in the balance, Sophie’s 
+                                journey is a thrilling blend of adventure, friendship, and self-discovery 
+                                that will keep you captivated from start to finish! <b>~ Recommended by Olivia & Emily</b></p>
+                        </div>
+                    </div>
+                    <div class="col-xxl-6 enticerimg" style="padding: 0;">
+                        <div style="max-width: 100vw !important;">
+                            <img src="images/keeper of the lost cities.jpg" style="width: 100%; object-fit: cover; border-radius: 0 10px 10px 0">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-6 order-xxl-2" style="padding: 0;">
+                        <div class="card" style="width:100%; height: 100%; padding: 2em; text-align: left;">
+                            <div class="previewtitle">
+                                <h3 class="card-title titles">The Book Thief</h3>
+                                <h6 class="card-subtitle mb-2 text-muted">Historical Fiction, War, Realism, Friendship, Compassion, Tradegy</h6>
+                            </div>
+                            <p class="previewsummary card-text"><i>The Book Thief</i> follows a girl called Liesel Meminger in Nazi Germany. 
+                                After her brother’s death, Liesel begins her lucrative childhood career of 
+                                thievery. As Liesel navigates the dire consequences of the war and the oppressive 
+                                Nazi regime, she also discovers the fecundity of words. However, 
+                                tragedy strikes at the wrong moment. With wholesome characters and an innovative
+                                narration style, this piece of historical fiction is a must-read for
+                                teens and young adults! <b>~ Recommended by Emma</b></p>
+                        </div>
+                    </div>
+                    <div class="col-xxl-6 order-xxl-1 enticerimg" style="padding: 0;">
+                        <div>
+                            <img src="images/the book thief.png" style="width: 100%; object-fit: cover; border-radius: 10px 0 0 10px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding-bottom: 15px; padding-left: 1em; padding-top: 1em;">
+                <h2 style="padding-left: 0.5em" class="display-2">It's All Free!</h2>
+                <div style="padding-left: 2em;" class="row">
+                    <img src="/images/reading.svg" class="col-lg-4" style="padding-bottom: 1em">
+                    <div class="col-lg-8" style="padding-right: 2em;">
+                        <p>These amazing resources are all free! Join us today to start reading and writing
+                        reviews and engage with our wonderful community! Signing up only takes a few seconds! 
+                        Let's read together on OBB!<br><br>
+                        Note this is a child-friendly platform. Adults are welcome, but this site and community
+                        is built with teens and children in mind.<br><br>
+                        <b>Before you sign up, please make sure you've read our <a href="/tos" style="text-decoration: underline;">Terms of Service</a>.
+                        Unlike other platforms, we make our ToS readable so you can be more informed, so please
+                        take a moment to read it.</b><br><br></p>
+
+                        <div style="text-align: center;">
+                            <button style="font-size: 1.5em; padding: 0.5em 1em 0.5em 1em; width: 80%" class="button-2"><b>Sign up now!</b></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="margin: 0; padding: 1em; background-color: rgb(66, 37, 211); color: white;">
+            <h2>Copyright © 2024 Our Beloved Books. All rights reserved.</h2>
+        </footer>
+        
+        <script src="script.js" async defer></script>
+    <script type="text/javascript"
+        src=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <script>
+            $("#weoffercont").height($("enticer").height())
+        </script>
+        <script>
+            var slideshow = document.getElementById('slideshow');
+            mc = new bootstrap.Carousel(slideshow);
+            mc.cycle();
+
+            document.getElementById("prev").addEventListener("click", function() {
+                mc.pause()
+            })
+
+            document.getElementById("next").addEventListener("click", function() {
+                mc.pause()
+            })
+        </script>
+    </body>
+</html>

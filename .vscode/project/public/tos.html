@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Our Beloved Books</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+        <meta name="keywords" content="books, reviews, book reviews, community, discussion group, teenagers, books for teens">
+        <meta name="description" content="Our Beloved Books is fostered to teenagers who love books. Here, we provide book reviews and analysis, as well as a community group for the curious to ask book-related questions!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    <body>
+        <div class="header together" style="justify-content: space-around; display: flex; max-height: 12vh;">
+            <img src="images/logo.svg" style="float: left; height: 12vh; background-color: #4399a6; border: 5px solid #175863;">
+            <div class="together" style="margin-left: 15px;">
+                <h1 onclick="window.location.href = '/'">Our Beloved Books</h1>
+            </div>
+            <div class="together" style="flex-direction: row; flex-wrap: wrap;">
+                <div class="navlink"><a href="/signup">Signup</a></div>
+                <div class="navlink"><a href="/login">Login</a></div>
+            </div>
+        </div>
+
+        <div style="margin-left: 10vw; margin-right: 10vw">
+            <h2>Terms of Service</h2>
+            <p>Please take a moment to read through our ToS. Unlike others, we make our
+                ToS easily <b>readable and short</b> so please don't just skim through it. We want
+                you to be informed! If its still too long, there is a <b>TLDR</b> in each section.</p><br>
+            <button class="accordion"><h3>Rules and Expectations</h3></button>
+            <div class="panel">
+                <p>Since there are people under 18 in our community, expectations on our
+                    users are particularly important. We keep our rules nice and simple.
+                    Except in extreme cases such as sexual harassment or death threats, 
+                    we run by a three-strike system. Failure to abide to the rules below 
+                    after three warnings will result in suspension or ban.
+                </p>
+                <ol>
+                    <li><p><b>Be respectful of others.</b> We do not tolerate
+                    intolerance. Please be civil in your discussions with others and have 
+                    good faith when debating. On stricter terms, do not insult others or
+                    discriminate against race, gender, etc... Do not engage in hate
+                    speech or threat to harm others. Do not endorsed the Nazis,
+                    the KKK, or any similar group. Genocide apologia is not allow here.
+                    Similarly, saying that a certain group "deserved to suffer" through
+                    oppression is also not allowed. Do not glorify violence, self-harm,
+                    suicide, or animal abuse.</p></li>
+                    <li><p><b>No explicit content.</b> Since our users are quite young, 
+                    don't post any sexual content (e.g., nudity). Sharing or attempting 
+                    to share content that sexualised children or normalised child sexual 
+                    abuse will result in an instant ban. Sharing real media showing
+                    explicit excessive violence with the intention to harass or disgust people
+                    will also result in an instant ban.</p></li>
+                    <li><p><b>We are here for reading.</b> Do not use your account
+                    for spamming or to scam others. Doing so would result in a ban.
+                    We are here for reading, so don't just come here to post advertisements.
+                    Do not come to our platform to spread misinformation. If you try to
+                    spread misinformation (e.g., climate change denial, flat earth, anti-vaccines),
+                    you will be warned.</p></li>
+                    <li><p><b>Do not come with malicious intent.</b> Do not use
+                    OBB with malicious intent. In other words, do not attempt
+                    to scam or hack us and do not use this site for illegal activities - 
+                    you must follow the law.
+                    This rule also includes - do not blackmail people or threaten to leak
+                    private information or attempt to impersonate somebody on OBB.</p></li>
+                </ol>
+                <p><b>TLDR: Don't be a jerk and use the site appropriately.
+                Remember there are children here!
+                </b></p>
+            </div>
+
+            <button class="accordion"><h3>Age and Privacy</h3></button>
+            <div class="panel">
+            <p>A few disclaimers about privacy, especially for the younger folks here.</p>
+            <ol>
+                <li><p><b>Data or information that is collected: </b> Your first name,
+                your email address, your book interests, your age bracket, and (possibly)
+                your address / local area is required when you sign up. No other information
+                about you is being collected.</p></li>
+                <li><p><b>Your information isn't being shared. </b> We do not share
+                your personal information. We do not use an AI algorithm for recommendations,
+                instead we rely mainly on filters, so your information is not used by OBB
+                for AI training purposes (because we don't have an AI).</p></li>
+                <li><p><b>We use your data / information to benefit your experience. </b> We
+                use your information to ensure that you are recommendations are suited to you.</p></li>
+            </ol>
+            <p><b>TLDR: The data we collect on you will not be shared and will only be
+                use to give you the best recommendations.
+            </b></p>
+            </div>
+        </div>
+        <script src="script.js" async defer></script>
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Our Beloved Books</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+        <meta name="keywords" content="books, reviews, book reviews, community, discussion group, teenagers, books for teens">
+        <meta name="description" content="Our Beloved Books is fostered to teenagers who love books. Here, we provide book reviews and analysis, as well as a community group for the curious to ask book-related questions!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    </head>
+    <body style="background-color: rgb(214, 231, 255); margin: 0 !important; ">
+        <div class="navbar navbar-expand-lg" id="header" style="max-width:100vw;">
+            <div class="container-fluid">
+                <h3 onclick="window.location.href = '/'">⭐ Our Beloved Books</h3>
+            </div>
+        </div>
+
+        <div class="navbar navbar-expand-lg" id="headeralternative" style="display: none; max-width: 100vw !important;">
+            <div class="container-fluid">
+                <h3 class='display-5' onclick="window.location.href = '/'" style="padding-left: 5vw; padding-top: 1vw;">Our Beloved Books</h3>
+            </div>
+        </div>
+        <br>
+
+        <h2 style="margin-left: 10vw;">Signing up now!</h2>
+        <form method="post" action="/signup" style="margin-left: 10vw; margin-right: 10vw;">
+            <div id="pg1">
+                <p><b>Before you sign up, please make sure you've read our <a href="/tos" style="text-decoration: underline;">Terms of Service</a>.
+                    Unlike other platforms, we make our ToS readable so you can be more informed, so please
+                    take a moment to read it before checking the box:</b></p>
+                <input type="checkbox" id="tos" name="tos" value="ToS" required>
+                <label for="tos"> I have read and agreed to the ToS.</label><br>
+                <p id="tosd"></p>
+                <br>
+
+                <h3>User Account Information</h3>
+                <p>Let's set up your account!</p>
+                <p><b>1. Username -</b> Create a username. Please do <i>not</i> put anything 
+                inappropriate or add personal information to your username.</p>
+                <input type="text" id="username" name="username" placeholder="Enter Your Username" required>
+                <button onclick="checkAvaliability()" type="button">Check Avaliability</button><br>
+                <p id="avaliability"></p>
+                <br>
+
+                <p><b>2. Password -</b> Enter a secure password to protect your account.</p>
+                <input type="password" id="password" name="password" placeholder="Enter Your Password" required>
+                <button onclick="togglePasswordVisibility('password')" type="button">Show/Hide</button>
+                <br>
+                <p id="pwd"></p>
+                <br>
+
+                <p><b>3. Email -</b> Please enter your personal email OR your guardian's email.
+                We will use this email to contact you about your reading progress and notify
+                you about any updates, announcements, or recommendations.</p>
+                <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+                <br>
+                <p id="emaild"></p>
+                <br>
+
+                <p><b>4. Biography -</b> Create a bio to be displayed next to your profile!</p>
+                <textarea id="bio" name="bio" value="Hi :)" rows="10" cols="50"></textarea required>
+                <br>
+                <p id="biod"></p>
+                <br><br>
+
+                <button onclick="page1done(true)" type="button">Next >>></button><br><br>
+            </div>
+            <div id="pg2" style="display: none">
+                <h3>Personal Information</h3>
+                <p>We will not share any personal information you enter here.</p>
+
+                <p><b>1. Name -</b> Please enter your first name (or a made-up moniker of your choice). 
+                We will use this when emailing you.</p>
+                <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+                <br>
+                <p id="named"></p>
+                <br>
+
+                <p><b>2. Age -</b> Please select your age range (or preferred age range). This will be 
+                used to recommend reading groups to you with similar-aged peers (within 3 years of your age).</p>
+                <input type="radio" id="0-5" name="age" value="0-5" required>
+                <label for="0-5">5 or younger</label><br>
+                <input type="radio" id="6-8" name="age" value="6-8">
+                <label for="6-8">6-8</label><br>  
+                <input type="radio" id="9-11" name="age" value="9-11">
+                <label for="9-11">9-11</label><br>
+                <input type="radio" id="12-14" name="age" value="12-14">
+                <label for="12-14">12-14</label><br>
+                <input type="radio" id="15-17" name="age" value="15-17">
+                <label for="15-17">15-17</label><br>
+                <input type="radio" id="18-24" name="age" value="18-24">
+                <label for="18-24">18-24</label><br>
+                <input type="radio" id="25-" name="age" value="25-">
+                <label for="25-">25 or older</label><br>
+                <p id="aged"></p>
+                <br><br>
+
+                <p><b>3. Address -</b> Please enter your address / suburb so we can map you to people near 
+                you. We will also use your address for book-swapping services and recommending.
+                face-to-face events. Please enter in the form "City State Country" for consistency.</p>
+                <input type="text" id="area" name="area" placeholder="Enter Your Address / Suburb">
+                <br><br>
+
+                <button onclick="goToPrevPage(2)" type="button"><<< Back</button>
+                <button onclick="page2done(true)" type="button">Next >>></button><br><br>
+            </div>
+            <div id="pg3" style="display: none">
+                <h3>Book Information</h3>
+                <p>Let's get to know your literature preferrences!</p>
+
+                <p><b>1. Genres -</b> Select your favourite genres, styles, and themes!</p>
+                <input type="checkbox" id="fantasy" name="genre" value="18" onclick="deRequire('genre')" required>
+                <label for="genre"> Fantasy</label><br>
+                <input type="checkbox" id="scifi" name="genre" value="19" onclick="deRequire('genre')" required>
+                <label for="genre"> Science Fiction</label><br>
+                <input type="checkbox" id="horror" name="genre" value="20" onclick="deRequire('genre')" required>
+                <label for="genre"> Horror</label><br>
+                <input type="checkbox" id="thriller" name="genre" value="21" onclick="deRequire('genre')" required>
+                <label for="genre"> Thriller</label><br>
+                <input type="checkbox" id="realism" name="genre" value="22" onclick="deRequire('genre')" required>
+                <label for="genre"> Realism</label><br>
+                <input type="checkbox" id="hisfi" name="genre" value="23" onclick="deRequire('genre')" required>
+                <label for="genre"> Historical Fiction</label><br>
+                <input type="checkbox" id="war" name="genre" value="24" onclick="deRequire('genre')" required>
+                <label for="genre"> War</label><br>
+                <input type="checkbox" id="action" name="genre" value="25" onclick="deRequire('genre')" required>
+                <label for="genre"> Action</label><br>
+                <input type="checkbox" id="nonfic" name="genre" value="26" onclick="deRequire('genre')" required>
+                <label for="genre"> Non-fiction</label><br>
+                <input type="checkbox" id="phil" name="genre" value="27" onclick="deRequire('genre')" required>
+                <label for="genre"> Philosophy</label><br>
+                <input type="checkbox" id="relig" name="genre" value="28" onclick="deRequire('genre')" required>
+                <label for="genre"> Religion</label><br>
+                <input type="checkbox" id="pol" name="genre" value="29" onclick="deRequire('genre')" required>
+                <label for="genre"> Politics</label><br>
+                <input type="checkbox" id="trad" name="genre" value="30" onclick="deRequire('genre')" required>
+                <label for="genre"> Tradegy</label><br>
+                <input type="checkbox" id="rom" name="genre" value="31" onclick="deRequire('genre')" required>
+                <label for="genre"> Romance</label><br>
+                <input type="checkbox" id="kind" name="genre" value="32" onclick="deRequire('genre')" required>
+                <label for="genre"> Kindness / Wholesome</label><br>
+                <input type="checkbox" id="cook" name="genre" value="33" onclick="deRequire('genre')" required>
+                <label for="genre"> Cookbooks</label><br>
+                <input type="checkbox" id="text" name="genre" value="34" onclick="deRequire('genre')" required>
+                <label for="genre"> Textbooks</label><br>
+                <input type="checkbox" id="dram" name="genre" value="35" onclick="deRequire('genre')" required>
+                <label for="genre"> Drama</label><br>
+                <input type="checkbox" id="com" name="genre" value="36" onclick="deRequire('genre')" required>
+                <label for="genre"> Comedy</label><br>
+                <input type="checkbox" id="mys" name="genre" value="37" onclick="deRequire('genre')" required>
+                <label for="genre"> Mystery</label><br>
+                <input type="checkbox" id="sat" name="genre" value="38" onclick="deRequire('genre')" required>
+                <label for="genre"> Satire</label><br>
+                <input type="checkbox" id="crim" name="genre" value="39" onclick="deRequire('genre')" required>
+                <label for="genre"> True Crime</label><br>
+                <input type="checkbox" id="gra" name="genre" value="40" onclick="deRequire('genre')" required>
+                <label for="genre"> Graphic Novels</label><br>
+                <input type="checkbox" id="adv" name="genre" value="41" onclick="deRequire('genre')" required>
+                <label for="genre"> Adventure</label><br>
+                <input type="checkbox" id="ya" name="genre" value="42" onclick="deRequire('genre')" required>
+                <label for="genre"> Young Adult</label><br>
+                <p id="genred"></p><br><br>
+
+                <p><b>2. Length -</b> What length do you prefer? You can select multiple.</p>
+                <input type="checkbox" id="sho" name="length" value="14" onclick="deRequire('length')" required>
+                <label for="length"> Short (Less than 300 pages)</label><br>
+                <input type="checkbox" id="med" name="length" value="15" onclick="deRequire('length')" required>
+                <label for="length"> Medium (300-600 pages)</label><br>
+                <input type="checkbox" id="lon" name="length" value="16" onclick="deRequire('length')" required>
+                <label for="length"> Long (Over 600 pages)</label><br>
+                <input type="checkbox" id="ser" name="length" value="17" onclick="deRequire('length')" required>
+                <label for="length"> Series (Multiple books)</label><br>
+                <p id="lengthd"></p><br><br>
+
+                <p><b>3. Style -</b> What narration styles do you prefer? You can select multiple.</p>
+                <input type="checkbox" id="conv" name="narrationstyle" value="10" onclick="deRequire('narrationstyle')" required>
+                <label for="narrationstyle"> Conversational (breaking the fourth wall)</label><br>
+                <input type="checkbox" id="des" name="narrationstyle" value="11" onclick="deRequire('narrationstyle')" required>
+                <label for="narrationstyle"> Descriptive (eloquent description of surroundings)</label><br>
+                <input type="checkbox" id="inn" name="narrationstyle" value="12" onclick="deRequire('narrationstyle')" required>
+                <label for="narrationstyle"> Innovative (playing around with different narrators and narration styles)</label><br>
+                <input type="checkbox" id="seri" name="narrationstyle" value="13" onclick="deRequire('narrationstyle')" required>
+                <label for="narrationstyle"> Serious (in-depth, heavy, informative)</label><br>
+                <input type="checkbox" id="1" name="narrationstyle" value="7" onclick="deRequire('narrationstyle')" required>
+                <label for="narrationstyle"> First-person</label><br>
+                <input type="checkbox" id="2" name="narrationstyle" value="8" onclick="deRequire('narrationstyle')" required>
+                <label for="narrationstyle"> Second-person</label><br>
+                <input type="checkbox" id="3" name="narrationstyle" value="9" onclick="deRequire('narrationstyle')" required>
+                <label for="narrationstyle"> Third-person</label><br>
+                <p id="styled"></p><br><br>
+
+                <p><b>4. Level -</b> What is your reading level?</p>
+                <input type="radio" id="presc" name="level" value="Newbie" required>
+                <label for="level"> <b>Newbie -</b> Preschool / Kindergarten (Very limited reading capacity, restricted to picture books, physical objects only)</label><br>
+                <input type="radio" id="prim" name="level" value="Apprentice">
+                <label for="level"> <b>Apprentice -</b> Primary School / Grades 1-6 (New to reading, can read short novels, understands morals from fables)</label><br>
+                <input type="radio" id="secon" name="level" value="Bookworm I">
+                <label for="level"> <b>Bookworm I -</b> Secondary School / Grades 7-10 (Has read many books, can read longer novels, understands more words, understands themes and symbols, understands abstract literary devices)</label><br>
+                <input type="radio" id="seni" name="level" value="Bookworm II">
+                <label for="level"> <b>Bookworm II -</b> Senior School / Grades 10-12 (Complex grasp on literature, can write elaborate analysis on books necessary for exams)</label><br>
+                <input type="radio" id="uni" name="level" value="Bibliophage">
+                <label for="level"> <b>Bibliophage -</b> University Student (Very well-read, understands the complex ideas that literature presents us and can critically evaluate them against their own opinions)</label><br>
+                <input type="radio" id="prof" name="level" value="Erudite">
+                <label for="level"> <b>Erudite -</b> Lecturer / Proffessor in University (Extremely well-read, understands in-depth a broad variety of topics, can critically evaluate books and morals with a firm understanding of the book's meaning, extremely articulate and able to clearly communicate a book's meaning)</label>
+                <br>
+                <p id="leveld"></p><br><br>
+                
+                </p><br>
+                <button onclick="goToPrevPage(3)" type="button"><<< Back</button>
+                <input onclick='page3done(true)' type="submit" value="Submit">
+            </div>
+            <br><br>
+        </form><br><br>
+        <script src="forms.js" async defer></script>
+        <script src="signup.js" async defer></script>
+    </body>
+</html>

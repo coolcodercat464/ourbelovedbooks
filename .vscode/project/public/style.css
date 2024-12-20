@@ -1,0 +1,349 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Courgette&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Luckiest+Guy&family=Nerko+One&family=Rowdies:wght@300;400;700&family=Shadows+Into+Light&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Protest+Guerrilla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Holtwood+One+SC&family=Joti+One&family=Peralta&display=swap');
+
+/* GENERAL SETTINGS */
+body {
+  background-color: rgb(229, 224, 255);
+}
+
+* {box-sizing: border-box}
+
+div:not(.exception) { 
+  overflow-wrap: anywhere; 
+  margin: 0 auto !important;
+  max-width: 1600px;
+}
+
+/* GENERAL STYLING */
+h1 {
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h3 {
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+}
+
+p, label, li, ul, ol {
+  font-family: "Yantramanav", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-style: normal;
+  font-size: 1.5rem;
+}
+
+b {
+  font-weight: 700 !important;
+}
+
+blockquote {
+  position: relative;
+  margin: 0.5em;
+  padding: 0.5em 2em 0.5em 3em;
+}
+
+blockquote:before {
+  font-family: Georgia, serif;
+  position: absolute;
+  font-size: 6em;
+  line-height: 1;
+  top:0;
+  left:0;
+  content: "\201C";
+}
+
+blockquote footer {
+  padding: 0 2em 0 0;
+  text-align: right;
+  font-size: 1.4em;
+}
+
+blockquote cite:before {
+  content: "\2013"
+}
+
+.quotes {
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.titles {
+  font-family: "Rowdies", sans-serif;
+  font-weight: 300;
+}
+
+.tags {
+  font-family: "Courier Prime", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Links */
+
+a {
+  all: unset;
+}
+
+a.classica {
+  text-decoration: underline;
+}
+
+.navlink {
+  font-family: "Nerko One", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.4em;
+  padding: 5px;
+  color: #0f434d;
+  text-decoration: underline;
+  text-decoration-color: #063a42;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+@property --buttonbg1 {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: false;
+}
+
+@property --buttonbg2 {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: false;
+}
+
+button:hover:not(.button-2), button:active:not(.button-2) {
+  --buttonbg1: rgb(44, 145, 208);
+  --buttonbg2: rgb(0, 134, 218);
+  color: white;
+}
+
+button:disabled:not(.button-2) {
+  color: rgb(54, 54, 54);
+  background-color: rgb(156, 156, 156);
+}
+
+button:not(.button-2), input[type=submit] {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 7px;
+  font-size: 15px;
+  background-image: linear-gradient(var(--buttonbg1), var(--buttonbg2)); 
+  color: black;
+  transition: color 0.6s, --buttonbg1 0.6s, --buttonbg2 0.6s;
+}
+
+.button2{
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.button-2 {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #3cade6 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  justify-content: center;
+  display: inline-flex;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  transition: box-shadow .15s,transform .15s;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+}
+
+.button-2:focus {
+  box-shadow: #237aa5 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #237aa5 0 -3px 0 inset;
+}
+
+.button-2:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #237aa5 0 -3px 0 inset;
+  transform: translateY(-1px);
+}
+
+.button-2:active {
+  box-shadow: #237aa5 0 3px 7px inset;
+  transform: translateY(0.5px);
+}
+
+/* MEDIA ADAPTIVITY */
+@media (max-width: 1600px) {
+  div:not(.exception) {max-width: 90vw;}
+}
+/*hi*/
+@media (min-width: 1000px) {
+    h1 {font-size: 65px;}
+    .navlink {font-size: 30px;}
+    h2 {font-size: 55px;}
+}
+
+@media (max-width: 700px) {
+  .display-2, .display-3, .display-4, .display-5, .display-6 {
+    font-size: 5vw !important;
+  }
+  p, li, a, button {
+    font-size: 3vw !important;
+  }
+  .card-img-overlay {
+    position: relative !important;
+  }
+}
+
+@media (max-height: 400px) {
+  #headeralternative {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  #header {
+    display: none;
+  }
+  #headeralternative {
+    display: block !important;
+  }
+}
+
+@media (max-width: 780px) {
+  #slideshow {
+    display: none;
+  }
+  #slideshowalternative {
+    display: block !important;
+  }
+}
+
+/* IMPORTANT CLASSES */
+/* On one line */
+.together {
+  display: flex;
+  align-items: center;
+}
+
+/* Sticky Header */
+#header, #headeralternative {
+  position: sticky;
+  position: -webkit-sticky;
+  background-color: #478ff5;
+  border: 5px solid #002559;
+  margin: 0;
+  top: 0;
+  width: 100% !important;
+  z-index: 1000;
+  overflow: visible;
+}
+
+/* Alerts */
+.alert {
+  padding-left: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: 1000;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-right: 20px;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+/* CUSTOM FORM ELEMENTS */
+/* Radio */
+input[type=radio] {
+  height: 1.1rem;
+  width: 1.1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  background-color: #b2f5ff;
+  border: 3px solid #FFF;
+  box-shadow: 0 0 0 1px #57b1be;
+  transition: border 0.4s, background-color 0.5s;
+  grid-template-columns: 1em auto;
+}
+
+input[type=radio]:hover {
+  background-color: #71ecff;
+  border: 3px solid #71ecff;
+  box-shadow: 0 0 0 1px #57b1be;
+}
+
+input[type=radio]:checked {
+  background: #57b1be;
+  border: 3px solid white;
+  box-shadow: 0 0 0 1px #57b1be;
+}
+
+/* Checkbox */
+input[type=checkbox] {
+  height: 1.2em;
+  width: 1.2em;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid black;
+  display: inline-block;
+  transform: translateY(0.5em);
+  background-color: white;
+  transition: background-color 0.4s, box-shadow 0.4s;
+}
+
+input[type=checkbox]:hover {
+  background-color: rgb(14, 111, 126, 0.4);
+}
+
+input[type=checkbox]:checked {
+  border-color: rgb(0, 0, 0);
+  background-color: #0e6f7e;
+  box-shadow: inset 0 0 0 2px white;
+}
+
+/* ACCORDION */
+.accordion {
+  width: 100%;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}

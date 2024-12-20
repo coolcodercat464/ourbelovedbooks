@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Our Beloved Books</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+        <meta name="keywords" content="books, reviews, book reviews, community, discussion group, teenagers, books for teens">
+        <meta name="description" content="Our Beloved Books is fostered to teenagers who love books. Here, we provide book reviews and analysis, as well as a community group for the curious to ask book-related questions!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    </head>
+    <style>
+        #tagsf, #tagsb, #authsf, #tagsfc {
+            /* Remove default list styling */
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #tagsf li, #tagsb li, #authsf li, #tagsfc li {
+            border: 1px solid #ddd; /* Add a border to all links */
+            margin-top: -1px; /* Prevent double borders */
+            background-color: #f6f6f6; /* Grey background color */
+            padding: 12px; /* Add some padding */
+            text-decoration: none; /* Remove default text underline */
+            font-size: 18px; /* Increase the font-size */
+            color: black; /* Add a black text color */
+            display: block; /* Make it into a block element to fill the whole list */
+        }
+
+        #tagsf li:hover, #tagsb li:hover, #authsf li:hover, #tagsfc li:hover {
+            background-color: #eee; /* Add a hover effect to all links, except for headers */
+        }
+
+        .selected {
+            background-color: rgb(21, 21, 118);
+            color: white;
+            border-radius: 12px;
+            border: 2px solid black;
+            padding: 1px 5px 1px 5px;
+            margin: 5px;
+        }
+
+    </style>
+    <body style="background-color: rgb(214, 231, 255); margin: 0 !important; ">
+        <div class="navbar navbar-expand-lg" id="header" style="max-width:100vw;">
+            <div class="container-fluid row">
+                <div class="navbar-brand col-6">
+                    <h3 onclick="window.location.href = '/'">⭐ Our Beloved Books</h3>
+                </div>
+                <div class="col-2" style="float: left;">
+                    <a class="navlink" href="/community"><h4>Community</h4></a>
+                </div>
+                <div class="col-2" style="float: left;">
+                    <a class="navlink" href="/reviews"><h4>Reviews</h4></a>
+                </div>
+                <div class="col-2" style="float: left;">
+                    <div class="dropdown">
+                        <button type="button" style="all: unset; font-family: 'Nerko One', cursive;
+                        font-weight: 400;
+                        font-style: normal;
+                        font-size: 1.4em;
+                        padding: 5px;
+                        color: #0f434d;
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;" class="navlink h-25" data-toggle="dropdown">
+                          Account &nbsp; <i class="fa fa-user-circle"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">Profile</a>
+                          <a class="dropdown-item" href="#">Settings</a>
+                          <a class="dropdown-item" href="#">Inbox</a>
+                          <a class="dropdown-item" href="#">Signout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="offcanvas offcanvas-start exception" id="menubar" style="margin:0 !important; text-align: left; padding-left: 2em;">
+            <div class="offcanvas-header exception" style="text-align: left; align-items: center;">
+                <h1 class="offcanvas-title" style="display: flex; align-items: center;">Menu</h1>
+                <button style="line-height: 1.7em; height: 1.7em; 
+                all: unset; border: none; background: none; color: black; font-size: 2em !important;" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas">
+                    x
+                </button>
+              </div>
+              <div class="offcanvas-body exception">
+                <a class="classica" href="/reviews"><h4>Reviews</h4></a><br>
+                <a class="classica" href="/community"><h4>Community</h4></a><br>
+                <a class="classica" href="/profile"><h4>Profile</h4></a>
+              </div>
+        </div>
+
+        <div class="navbar navbar-expand-lg" id="headeralternative" style="display: none; max-width: 100vw !important;">
+            <div class="container-fluid row">
+                <div class="col-1">
+                    <button style="all: unset; font-size: 2em; color: black;" class="btn btn-primary ham" type="button" data-bs-toggle="offcanvas" data-bs-target="#menubar">&equiv;</button>
+                </div>
+                <div class="navbar-brand col-11">
+                    <h3 class='display-5' onclick="window.location.href = '/'" style="padding-left: 5vw; padding-top: 1vw;">Our Beloved Books</h3>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 1em;" class="row">
+            <h2>All Books</h2>
+            <p>Know a book that is not on this list? Add it to our collection to help OBB grow! <button onclick="showcreate()">Add a book!</button></p>
+            <div id="creatediv" style="display: none; margin-bottom: 3em !important;">
+                <div class="card" style="padding: 2em; text-align: left;">
+                    <h3 class="card-title titles">Add a book to our collection!</h3>
+                    <h6 class="card-subtitle mb-2 text-muted">Thank you for expanding our collection!</h6>
+                    <form>
+                        <p><b>1. ISBN:</b> To prevent trolls from clogging our database, please enter the isbn code, a 13-digit unique identifier for books,
+                            so we can validate it. You can use <a href='https://isbnsearch.org/'>this tool</a> to find the isbn of your book.</p>
+                        <label for="isbn">Enter the isbn of your book here: </label> <input type="number" id="isbn" name="isbn" placeholder="1234567890123" required><br>
+                        <button onclick="bookbyisbn()" type="button">Validate the isbn!</button>
+                    </form>
+                    <div id="step2" style="display: none">
+                        <p><b>2. Confirm Selection:</b> Click on the book you would like to add to confirm your selection.</p>
+                        <div id="candidates"></div>
+                    </div>
+                    <div id="step3" style="display: none">
+                        <form>
+                            <p id="selection"></p>
+                            <p><b>3. Extra details:</b> You're almost there! Provide some quick, short extra details about the book you think others might like to know.</p>
+                            <p><b>3.1. Write a short description (optional)</b> that does not spoil the book but gives an idea for what it is about. Please try to be mindful about your biases!</p>
+                            <textarea id="teaser" name="teaser" cols="50" rows="4"></textarea><br>
+                            
+                            <p><b>3.2. Add relevant tags!</p>
+                            <input id="tagsinc" class="form-control mr-sm-2" type="search" onkeyup="filtertagscreate()" placeholder="Search" aria-label="Search">
+                            <div style="height: 20vh; overflow: scroll;">
+                                <ol id="tagsfc">
+            
+                                </ol>
+                            </div>
+                            <div id="selectedtagscreate"></div>
+                            <br>
+
+                            <p><b>3.3. Create an age limit or provide trigger warnings (optional)</b> that you think might be relevant. If the book is child-friendly, please leave this section blank.</p>
+                            <label for="minage">The minage should be: </label> <input type="number" id="minage" name="minage" placeholder="13"> <label for="reason">due to </label> <input type="text" id="reason" name="reason" placeholder="romantic scenes, trigger warnings for islamophobia, etc..."><br>
+                            <button type="button" onclick="addbook()">Add this Book!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="filters" class="col-lg">
+                <form class="form-inline my-2 my-lg-0" style="display: flex;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search by title" aria-label="Search" onkeyup="bytitle()" id="titlesearch">
+                    <button class="btn my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+                <br>
+
+                <p>Filter by tags</p>
+                
+                <form class="form-inline my-2 my-lg-0" style="display: flex">
+                    <input id="tagsin" class="form-control mr-sm-2" type="search" onkeyup="filtertags()" placeholder="Search" aria-label="Search">
+                </form>
+                <div style="height: 20vh; overflow: scroll;">
+                    <ol id="tagsf">
+
+                    </ol>
+                </div>
+                <br>
+
+                <p>Blacklist tags</p>
+                
+                <form class="form-inline my-2 my-lg-0" style="display: flex">
+                    <input id="tagsbin" class="form-control mr-sm-2" type="search" onkeyup="blacklisttags()" placeholder="Search" aria-label="Search">
+                </form>
+                <div style="height: 20vh; overflow: scroll;">
+                    <ol id="tagsb">
+
+                    </ol>
+                </div>
+
+                <div id="selectedtags"></div>
+                <br>
+
+                <p>Filter by Author</p>
+                
+                <form class="form-inline my-2 my-lg-0" style="display: flex;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="authin" onkeyup="filterauths()">
+                </form>
+                <div id="authsf" style="height: 20vh; overflow: scroll;">
+
+                </div>
+                <div id="selectedauth"></div>
+                <br>
+
+                <p>Filter by Rating</p>
+                <form class="my-2 my-lg-0">
+                    <input type="checkbox" id="any" name="stars" value="five" onclick="getstars()">
+                    <label for="stars">Any</label><br>
+                    <input type="checkbox" id="five" name="stars" value="five" onclick="getstars()">
+                    <label for="stars">Five stars</label><br>
+                    <input type="checkbox" id="four" name="stars" value="four" onclick="getstars()">
+                    <label for="stars">Four stars</label><br>
+                    <input type="checkbox" id="three" name="stars" value="three" onclick="getstars()">
+                    <label for="stars">Three stars</label><br>
+                    <input type="checkbox" id="two" name="stars" value="two" onclick="getstars()">
+                    <label for="stars">Two stars</label><br> 
+                    <input type="checkbox" id="one" name="stars" value="one" onclick="getstars()">
+                    <label for="stars">One star</label><br> 
+                    <input type="checkbox" id="none" name="stars" value="none" onclick="getstars()">
+                    <label for="stars">None yet</label><br> 
+                </form>
+            </div>
+            
+            <div id="booklist" class="col-lg">
+
+            </div>
+        </div>
+        
+        <footer style="margin: 0; padding: 1em; background-color: rgb(66, 37, 211); color: white;">
+            <h2>Copyright © 2024 Our Beloved Books. All rights reserved.</h2>
+        </footer>
+        
+        <script src="script.js" async defer></script>
+    <script>
+        const sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+        }
+
+        function getKeyByValue(object, value) {
+            return Object.keys(object).find(key => object[key] === value);
+        }
+
+        createon = false
+        selectedtaglist = []
+        filteredtaglist = []
+        selectedtaglistcreate = []
+        filteredtaglistcreate = []
+        selectedtaglistcreateid = []
+        bookList = []
+        allTags = {}
+        blockedtaglist = []
+        bookListo = []
+        bookListt = []
+        authorList = []
+        selectedauthors = []
+        booktitles = []
+        starsdict = {5: 1, 4: 1, 3: 1, 2: 1, 1: 1, 0: 1}
+        anyticked = false
+        posbooks = []
+        var book2add = null;
+        var isbn2add = null;
+
+        /* Fetching */
+        
+        fetch('/alltags').then(response => response.json()).then(data => {
+            for (each in data) {
+                tag = data[each]
+                allTags[tag.id] = tag.name
+                document.getElementById('tagsf').innerHTML += `<li><button style='all: unset;' onclick='addtotags("${tag.name}")'>${tag.name}</button></li>`;
+                document.getElementById('tagsb').innerHTML += `<li><button style='all: unset;' onclick='blocktags("${tag.name}")'>${tag.name}</button></li>`;
+                document.getElementById('tagsfc').innerHTML += `<li><button type='button' style='all: unset;' onclick='addtotagscreate("${tag.name}")'>${tag.name}</button></li>`;
+            }
+        })
+
+        fetch('/allauthors').then(response => response.json()).then(data => {
+            for (each in data) {
+                author = data[each].author
+                if (authorList.includes(author) == -1) {
+                    authorList.push(author)
+                }
+                document.getElementById('authsf').innerHTML += `<li><button style='all: unset;' onclick='addtoauthors("${author.replaceAll(" ", "_")}")'>${author}</button></li>`;
+            }
+        })
+        
+        fetch('/allbooks').then(response => response.json()).then(data => {
+            for (each in data) {
+                book = data[each];
+                x = [book.id, book.title, book.tags, book.stars, book.teaser, book.author, book.ibsm, book.minage]
+                console.log(x)
+                bookList.push(x);
+                bookListo.push(x);
+                booktitles.push(x[1])
+            }
+
+            showbooks()
+        })
+
+        /* Add books */
+        function showcreate() {
+            if (createon) {
+                document.getElementById('creatediv').style.display = 'none'
+                createon = false
+            } else {
+                document.getElementById('creatediv').style.display = 'block'
+                createon = true
+            }
+        }
+
+        function bookbyisbn() {
+            isbn = document.getElementById('isbn').value
+            fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDCScgIKe5J7F7UmMeGKDZPwSFClH_VnKE`).then(response => response.json()).then(data => {
+                if (data.items == undefined || isbn.trim() == '') {
+                    alert('invalid isbn')
+                } else {
+                    isbn2add = isbn
+                    document.getElementById('step2').style.display = 'block'
+                    document.getElementById('candidates').innerHTML = ''
+                    for (i in data.items) {
+                        book = data.items[i].volumeInfo
+                        posbooks.push(book)
+                        if (book.authors == undefined) {
+                            authors = ['Unknown']
+                        } else {
+                            authors = book.authors
+                        }
+                        if (booktitles.includes(book.title)) {
+                            inornott = 'This book has already been included in our database.'
+                            inornotb = 'disabled'
+                        } else {
+                            inornott = ''
+                            inornotb = `onclick="confirmbook('${escape(book.title)}')"`
+                        }
+                        if (book.imageLinks == undefined) {
+                            document.getElementById('candidates').innerHTML += `
+                    <div class="card">
+                        <div class="card-body">
+                                <h3 class="card-title titles">${book.title}</h3>
+                                <h6 class="card-subtitle mb-2 text-muted">By ${authors.join(", ")}</h6>
+                                <p style='color: red;'>${inornott}</p>
+                                <p>${book.description}</p>
+                                <button ${inornotb}>Add this book!</button>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                        } else {
+                            document.getElementById('candidates').innerHTML += `
+                    <div class="card">
+                        <div class="card-body">
+                            <div class='row'>
+                                <div class='col-lg-2'> <img src='${book.imageLinks.thumbnail}'> </div>
+                                <div class='col-lg-10'>
+                                    <h3 class="card-title titles">${book.title}</h3>
+                                    <h6 class="card-subtitle mb-2 text-muted">By ${authors.join(", ")}</h6>
+                                    <p style='color: red;'>${inornott}</p>
+                                    <p>${book.description}</p>
+                                    <button ${inornotb}>Add this book!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                        }
+                    }
+                }
+            })
+        }
+
+        function confirmbook(bookt) {
+            for (i in posbooks) {
+                if (escape(posbooks[i].title) == bookt) {
+                    book2add = posbooks[i]
+                    document.getElementById('step3').style.display = 'block'
+                    document.getElementById('selection').textContent = `You selected: ${posbooks[i].title}`
+                    document.getElementById('teaser').textContent = posbooks[i].description
+                }
+            }
+        }
+
+        function addbook() {
+            if (book2add != null) {
+                teaser = document.getElementById('teaser').value
+                minage = document.getElementById('minage').value
+                reason = document.getElementById('reason').value
+
+                var data = {
+                    isbn: isbn2add,
+                    title : book2add.title,
+                    authors : book2add.authors.join(', '),
+                    teaser : teaser,
+                    minage: minage,
+                    reason: reason,
+                    length: book2add.pageCount,
+                    tags: selectedtaglistcreateid
+                }
+
+                console.log(data)
+
+                fetch('http://localhost:3000/addbook', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = `/reviewpage/${data.id}`;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        function filtertagscreate() {
+            input = document.getElementById("tagsinc")
+            filter = input.value.toUpperCase();
+            tagsf = document.getElementById("tagsfc");
+            tags = tagsf.getElementsByTagName('li');
+
+            filteredtaglistcreate = []
+            for (i = 0; i < tags.length; i++) {
+                b = tags[i].getElementsByTagName('button')[0];
+                txtValue = b.textContent || b.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tags[i].style.display = "";
+                    filteredtaglistcreate.push(txtValue)
+                } else {
+                    tags[i].style.display = "none";
+                }
+            }
+        }
+
+        function addtotagscreate(tagname) {
+            if (selectedtaglistcreate.includes(tagname)) {
+                
+            } else {
+                document.getElementById("selectedtagscreate").innerHTML += `<span class='selected tags' onclick=removefromtagscreate("${tagname}")>${tagname}</span>`
+                selectedtaglistcreate.push(tagname);
+                selectedtaglistcreateid.push(getKeyByValue(allTags, tagname))
+            }
+        }
+
+        function removefromtagscreate(tagname) {
+            if (selectedtaglistcreate.includes(tagname)) {
+                selectedtaglistcreate.splice(selectedtaglistcreate.indexOf(tagname), 1);
+                selectedtaglistcreateid.splice(selectedtaglistcreateid.indexOf(getKeyByValue(allTags, tagname)))
+                document.getElementById("selectedtagscreate").innerHTML = ''
+                for (each in selectedtaglistcreate) {
+                    document.getElementById("selectedtagscreate").innerHTML += `<span class='selected tags' onclick=removefromtagscreate("${selectedtaglistcreate[each]}")>${selectedtaglistcreate[each]}</span>`
+                }
+            }
+        }
+
+        /* Book filtration */
+
+        function bytitle() {
+            input = document.getElementById('titlesearch');
+            filter = input.value.toUpperCase();
+
+            if (filter == '') {
+                managebooks()
+            } else {
+                bookListt = []
+                for (each in bookListo) {
+                    txtValue = bookListo[each][1].toUpperCase()
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        bookListt.push(bookListo[each])
+                    }
+                }
+
+                managebooks(arr=bookListt)
+            }
+        }
+
+        function myfunc(l, p, a, b) {
+            aval = 0;
+            bval = 0
+            if (l != null) {
+                for (t in l) {
+                    k = l[t]
+                    if (a[2].includes(k)) { 
+                        aval += p
+                    }
+                    if (b[2].includes(k)) {
+                        bval += p
+                    }
+                }
+            }
+            return [aval, bval]
+        }
+
+        async function showbooks() {
+            tags0 = [<%= tags0 %>]
+            tags1 = [<%= tags1 %>]
+            tags3 = [<%= tags3 %>]
+            tags4 = [<%= tags4 %>]
+
+            bookList.sort(function (a, b) {
+                aval = 0
+                bval = 0
+
+                x = myfunc(tags0, -2, a, b)
+                y = myfunc(tags1, -1, a, b)
+                z = myfunc(tags3, 1, a, b)
+                w = myfunc(tags4, 2, a, b)
+
+                aval = x[0] + y[0] + z[0] + w[0]
+                bval = x[1] + y[1] + z[1] + w[1]
+
+                return bval - aval
+            })
+
+
+            document.getElementById("booklist").innerHTML = ""
+            for (each in bookList) {
+                book = bookList[each]
+
+                booktags = ''
+
+                for (i in book[2]) {
+                    tagname = allTags[parseInt(book[2][i])]
+                    while (tagname == undefined){
+                        await sleep(100)
+                        tagname = allTags[parseInt(book[2][i])]
+                    }
+
+                    booktags += `<span class='selected tags' onclick=removefromtags("${tagname}")>${tagname}</span>`
+                    if (i > 5) {
+                        break;
+                    }
+                }
+                
+                if (book[7] != undefined) {
+                    minage = book[7].split(':')[0]
+                    reason = book[7].split(':').slice(1).join(":")
+                    document.getElementById("booklist").innerHTML += `
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title titles"><a class='classica' href='/reviewpage/${book[0]}'>ID #${book[0]}: ${book[1]}</a></h3>
+                            <h6 class="card-subtitle mb-2 text-muted">By ${book[5]} | ${book[3]} stars</h6>
+                            <p style="font-size: 1em;">It is recommended for you to be over ${minage} to read this book.
+                                    ${reason}.</p>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src="/images/stop.webp" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="card-text">
+                                        ${booktags}
+                                        <p style="font-size: 1.2em;">${book[4]}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                } else {
+                    document.getElementById("booklist").innerHTML += `
+                <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title titles"><a class='classica' href='/reviewpage/${book[0]}'>ID #${book[0]}: ${book[1]}</a></h3>
+                            <h6 class="card-subtitle mb-2 text-muted">By ${book[5]} | ${book[3]} stars</h6>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src="/images/safe-for-kids.webp" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="card-text">
+                                        ${booktags}
+                                        <p style="font-size: 1.2em;">${book[4]}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+                }
+            }
+        }
+
+        function managebooks(arr=bookListo) {
+            bookList = []
+            
+            for (each in arr) {
+                book = arr[each]
+
+                booktags = []
+
+                for (i in book[2]) {
+                    tagname = allTags[parseInt(book[2][i])]
+                    booktags.push(tagname)
+                }
+
+                bad = false
+                good = false
+                agood = false
+                for (t in booktags) {
+                    tag = booktags[t]
+                    if (blockedtaglist.includes(tag)) {
+                        bad = true
+                        break;
+                    }
+                    if (selectedtaglist.includes(tag) || selectedtaglist.length == 0) {
+                        good = true
+                    }
+                    if (selectedauthors.includes(book[5]) || selectedauthors.length == 0) {
+                        agood = true
+                    }
+                }
+
+                if (starsdict[Math.round(book[3])] == 0) {
+                    bad = true
+                }
+
+                if (bad == false && good == true && agood == true) {
+                    bookList.push(book)
+                }
+            }
+
+
+
+            showbooks()
+        }
+
+        /* Translate user inputer */
+
+        function getstars() {
+            var checkedBoxes = Array.from(document.querySelectorAll('input[name=stars]:checked')).map(i => i.id);
+            if (checkedBoxes.includes('any')) {
+                starsdict = {5: 1, 4: 1, 3: 1, 2: 1, 1: 1, 0: 1}
+            } else if (checkedBoxes.length == 0) {
+                starsdict = {5: 1, 4: 1, 3: 1, 2: 1, 1: 1, 0: 1}
+            } else {
+                starsdict = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0, 0: 0}
+                for (each in checkedBoxes) {
+                    switch (checkedBoxes[each]) {
+                        case 'five':
+                            n = 5
+                            break
+                        case 'four':
+                            n = 4
+                            break
+                        case 'three':
+                            n = 3
+                            break
+                        case 'two':
+                            n = 2
+                            break
+                        case 'one':
+                            n = 1
+                            break
+                        case 'none':
+                            n = 0
+                            break
+                    }
+                    starsdict[n] = 1
+                }
+            }
+
+            bytitle()
+        }
+
+        function filtertags() {
+            input = document.getElementById("tagsin")
+            filter = input.value.toUpperCase();
+            tagsf = document.getElementById("tagsf");
+            tags = tagsf.getElementsByTagName('li');
+
+            filteredtaglist = []
+            for (i = 0; i < tags.length; i++) {
+                b = tags[i].getElementsByTagName('button')[0];
+                txtValue = b.textContent || b.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tags[i].style.display = "";
+                    filteredtaglist.push(txtValue)
+                } else {
+                    tags[i].style.display = "none";
+                }
+            }
+        }
+
+        function filterauths() {
+            input = document.getElementById("authin")
+            filter = input.value.toUpperCase();
+            authsf = document.getElementById("authsf");
+            auths = authsf.getElementsByTagName('li');
+
+            filteredlist = []
+            for (i = 0; i < auths.length; i++) {
+                b = auths[i].getElementsByTagName('button')[0];
+                txtValue = b.textContent || b.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    auths[i].style.display = "";
+                    filteredtaglist.push(txtValue)
+                } else {
+                    auths[i].style.display = "none";
+                }
+            }
+        }
+
+        function blacklisttags() {
+            input = document.getElementById("tagsbin")
+            filter = input.value.toUpperCase();
+            tagsb = document.getElementById("tagsb");
+            tags = tagsb.getElementsByTagName('li');
+
+            filteredtaglist = []
+            for (i = 0; i < tags.length; i++) {
+                b = tags[i].getElementsByTagName('button')[0];
+                txtValue = b.textContent || b.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tags[i].style.display = "";
+                    filteredtaglist.push(txtValue)
+                } else {
+                    tags[i].style.display = "none";
+                }
+            }
+        }
+
+        function addtotags(tagname) {
+            if (selectedtaglist.includes(tagname) || blockedtaglist.includes(tagname)) {
+                
+            } else {
+                document.getElementById("selectedtags").innerHTML += `<span class='selected tags' onclick=removefromtags("${tagname}")>${tagname}</span>`
+                selectedtaglist.push(tagname);
+                bytitle()
+            }
+        }
+
+        function addtoauthors(author) {
+            author = author.replaceAll("_", " ")
+            if (selectedauthors.includes(author)) {
+                
+            } else {
+                document.getElementById("selectedauth").innerHTML += `<span class='selected tags' onclick=removefromauthors('${author.replaceAll(" ", "_")}')>${author}</span>`
+                selectedauthors.push(author);
+                bytitle()
+            }
+        }
+
+        function removefromauthors(author) {
+            author = author.replaceAll("_", " ")
+            if (selectedauthors.includes(author)) {
+                selectedauthors.splice(selectedauthors.indexOf(author), 1);
+                document.getElementById("selectedauth").innerHTML = ''
+                for (each in selectedauthors) {
+                    document.getElementById("selectedauth").innerHTML += `<span class='selected tags' onclick=removefromauthors("${selectedauthors[each].replaceAll(" ", "_")}")>${selectedauthors[each]}</span>`
+                }
+                bytitle()
+            }
+        }
+
+        function blocktags(tagname) {
+            if (blockedtaglist.includes(tagname) || selectedtaglist.includes(tagname)) {
+                
+            } else {
+                document.getElementById("selectedtags").innerHTML += `<span class='selected tags' style='background-color: red;' onclick=removefromtags("${tagname}")>${tagname}</span>`
+                blockedtaglist.push(tagname);
+                bytitle()
+            }
+        }
+
+        function removefromtags(tagname) {
+            if (selectedtaglist.includes(tagname)) {
+                selectedtaglist.splice(selectedtaglist.indexOf(tagname), 1);
+                document.getElementById("selectedtags").innerHTML = ''
+                for (each in selectedtaglist) {
+                    document.getElementById("selectedtags").innerHTML += `<span class='selected tags' onclick=removefromtags("${selectedtaglist[each]}")>${selectedtaglist[each]}</span>`
+                }
+                for (each in blockedtaglist) {
+                    document.getElementById("selectedtags").innerHTML += `<span class='selected tags' style='background-color: red;' onclick=removefromtags("${blockedtaglist[each]}")>${blockedtaglist[each]}</span>`
+                }
+                bytitle()
+            } else if (blockedtaglist.includes(tagname)) {
+                blockedtaglist.splice(blockedtaglist.indexOf(tagname), 1);
+                document.getElementById("selectedtags").innerHTML = ''
+                for (each in blockedtaglist) {
+                    document.getElementById("selectedtags").innerHTML += `<span class='selected tags' style='background-color: red;' onclick=removefromtags("${blockedtaglist[each]}")>${blockedtaglist[each]}</span>`
+                }
+                for (each in selectedtaglist) {
+                    document.getElementById("selectedtags").innerHTML += `<span class='selected tags' onclick=removefromtags("${selectedtaglist[each]}")>${selectedtaglist[each]}</span>`
+                }
+                bytitle()
+            }
+        }
+    </script>
+        <script type="text/javascript" src=
+"https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript"
+        src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script type="text/javascript"
+        src=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    </body>
+</html>
