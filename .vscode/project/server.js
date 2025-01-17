@@ -1,7 +1,7 @@
 // setup
 const express = require('express');                       // import express
 const path = require('path');                             // install path
-const options = {root: path.join(__dirname, '/public')};// set options root
+const options = {root: path.join(__dirname, '/public')};  // set options root
 const app = express();                                    // initialise app
 const port = 3000;                                        // set port
 const cors = require('cors');
@@ -39,8 +39,8 @@ app.use(bodyParser.urlencoded({extended: true}));         // use bodyparser
 const db = require('./databases/postgres.js')             // database stuff
 
 // get and post routing
-app.get(['/', '/login', '/signup', '/reviews', '/tos', '/home', '/reviewpage/:bookid'], routes)
-app.post(['/', '/login', '/signup', '/reviews', '/home', '/addbook', '/reviewpage/:bookid'], routes)
+app.get(['/', '/login', '/signup', '/reviews', '/tos', '/home', '/reviewpage/:bookid', '/profile', '/usertags'], routes)
+app.post(['/', '/login', '/signup', '/reviews', '/home', '/addbook', '/reviewpage/:bookid', '/ratebook', '/submittier'], routes)
 
 // send db information
 app.get('/allusernames', (req, res) => {
@@ -84,6 +84,22 @@ app.get('/allbooks', (req, res) => {
     }
   });
 });
+
+app.get('/allreviews', (req, res) => {
+
+  const query = 'SELECT id, username, date, title, stars, body, book FROM reviews;';
+
+  db.query(query, (error, result) => {
+    if (error) {
+      console.error('Error occurred:', error);
+      res.status(500).send('An error occurred while retrieving data from the database.');
+    } else {
+      const results = result.rows;
+      res.json(results);
+    }
+  });
+});
+
 
 app.get('/allauthors', (req, res) => {
   const query = 'SELECT author FROM books;';

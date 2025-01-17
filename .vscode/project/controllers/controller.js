@@ -6,6 +6,7 @@ var theuser;
 // password hashing stuff
 var MD5 = require("crypto-js/md5");
 const salt = "Let_us_pick_up_our_books_and_our_pens,_they_are_the_most_powerful_weapons_Malala_Yousafzai";
+var userid = 0;
 
 // passport authentication stuff
 const passport = require('passport');
@@ -32,21 +33,30 @@ const partialbeginloggedin = `
         <meta name="keywords" content="books, reviews, book reviews, community, discussion group, teenagers, books for teens">
         <meta name="description" content="Our Beloved Books is fostered to teenagers who love books. Here, we provide book reviews and analysis, as well as a community group for the curious to ask book-related questions!">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+
         <link rel="stylesheet" href="/style.css">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" defer></script>
+        
+        <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+            rel = "stylesheet">
+        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
         <script>
-            $(document).ready(function() {
-                $("tbody").sortable({connectWith:"tbody"});
+            $(function() {
+            $( ".sortable" ).sortable({
+                connectWith: ".sortable",
+                placeholder: "highlight",
+                dropOnEmpty: true
+            });
             });
         </script>
     </head>
     <body style="background-color: rgb(214, 231, 255); margin: 0 !important; ">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <div class="navbar navbar-expand-lg" id="header" style="max-width:100vw;">
             <div class="container-fluid row">
                 <div class="navbar-brand col-6">
@@ -72,7 +82,7 @@ const partialbeginloggedin = `
                           Account &nbsp; <i class="fa fa-user-circle"></i>
                         </button>
                         <div class="dropdown-menu">
-                          <a href="#">Profile</a>
+                          <a href="/profile">Profile</a>
                           <a href="#">Settings</a>
                           <a href="#">Inbox</a>
                           <a href="#">Signout</a>
@@ -183,8 +193,6 @@ const partialbeginloggedout = `
 
 const partialend = `
         <script src="script.js" async defer></script>
-        <script type="text/javascript" src=
-"https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript"
         src=
 "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -211,9 +219,11 @@ passport.use(new LocalStrategy(
             user = users[u];
             if(username === user.username && password === user.password) {
                 success = user
+                break;
             }
         }
         if(success) {
+            userid = u;
             return done(null, success)
         } else {
             return done(null, false, { message: 'Invalid credentials.\n' });
@@ -228,7 +238,7 @@ passport.serializeUser((user, done) => {
   
 passport.deserializeUser(async (id, done) => {
     users = await users_list();
-    const user = users[0].id === id ? users[0] : false; 
+    const user = users[userid].id === id ? users[userid] : false; 
     done(null, user);
 });
 
@@ -339,7 +349,7 @@ const addbookpost = async (req, res)=>{
     if (result1.rowCount == 0) {
         id = 1
     } else {
-        id = result1.rows[result1.rowCount -1].id.split(':')[0] + 1
+        id = result1.rows[result1.rowCount -1].id + 1
     }
 
     if (pages < 300) {
@@ -392,6 +402,17 @@ const addbookpost = async (req, res)=>{
     res.send({'id':id})
 }
 
+const ratebookpost = async (req, res)=>{ 
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+
+        const mq2 = 'INSERT INTO reviews (username, date, title, body, stars, book) VALUES ($1, $2, $3, $4, $5, $6)'
+        const result2 = await db.query(mq2, [theuser.username, x.date, x.title, x.review, x.rating, x.bookid])
+    }
+}
+
 const reviewpageget = async (req, res) => {
     bookid = req.params.bookid
     if (theuser == undefined) {
@@ -400,6 +421,36 @@ const reviewpageget = async (req, res) => {
         res.render('reviewpage.html', {root: path.join(__dirname, '../public'), id: parseInt(bookid), head: partialbeginloggedin, footer: partialfooter, end: partialend})
     }
 }
+
+const profileget = async (req, res) => {
+    res.render('profile.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedin, footer: partialfooter, end: partialend})
+}
+
+const usertags = async (req, res) => {
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        const mq = 'SELECT tags0, tags1, tags2, tags3, tags4 FROM users WHERE username = $1'
+        const result = await db.query(mq, [theuser.username])
+        res.send(result.rows);
+    }
+};
+
+const submittier = async (req, res) => {
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+        tags0 = (x.tags0.length == 0) ? '{}' : `{${x.tags0.join(',')}}`
+        tags1 = (x.tags1.length == 0) ? '{}' : `{${x.tags1.join(',')}}`
+        tags2 = (x.tags2.length == 0) ? '{}' : `{${x.tags2.join(',')}}`
+        tags3 = (x.tags3.length == 0) ? '{}' : `{${x.tags3.join(',')}}`
+        tags4 = (x.tags4.length == 0) ? '{}' : `{${x.tags4.join(',')}}`
+        const mq = 'UPDATE users SET tags0 = $1, tags1 = $2, tags2 = $3, tags3 = $4, tags4 = $5 WHERE username = $6'
+        await db.query(mq, [tags0, tags1, tags2, tags3, tags4, theuser.username])
+        res.send(x);
+    }
+};
   
 // Export of all methods as object 
 module.exports = { 
@@ -414,5 +465,9 @@ module.exports = {
     homeget,
     homepost,
     addbookpost,
-    reviewpageget
+    reviewpageget,
+    ratebookpost,
+    profileget,
+    usertags,
+    submittier
 }

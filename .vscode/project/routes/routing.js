@@ -29,8 +29,14 @@ router.get('/home', control.homeget);
 router.post('/home', control.homepost);
 
 router.post('/addbook', control.addbookpost);
+router.post('/ratebook', control.ratebookpost);
 
 router.get('/reviewpage/:bookid', control.reviewpageget);
+
+router.get('/profile', control.profileget);
+router.post('/submittier', control.submittier)
+
+router.get('/usertags', control.usertags)
 
 module.exports = router;
 

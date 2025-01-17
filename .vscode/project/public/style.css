@@ -243,6 +243,19 @@ button:not(.button-2), input[type=submit] {
 }
 
 /* IMPORTANT CLASSES */
+/* Drag-and-drop */
+.droplet { 
+  background-color: pink;
+  width: 120px; height: 90px;padding: 0.5em; float: left; 
+  margin: 10px; 
+}
+
+.draglet { 
+  background-color: red;
+  width: 100px; height: 50px; padding: 0.5em; 
+  margin: 0px 5px 10px 0; 	    
+}
+
 /* On one line */
 .together {
   display: flex;
@@ -284,6 +297,40 @@ button:not(.button-2), input[type=submit] {
 
 .closebtn:hover {
   color: black;
+}
+
+/* JQueryUI Sortable */
+.sortable { 
+  list-style-type: none; 
+  margin: 0; 
+  float:left;
+  width: 90%;
+  list-style-type: none; 
+  margin-right: 10px;
+  background: #eee; 
+  padding: 5px;
+}
+
+.sortable li { 
+  padding: 0.4em;
+  padding-left: 0.6em;
+  margin: 0.1em;
+  width: 100%;
+}
+
+.default {
+  background: #cedc98;
+  border: 1px solid #DDDDDD;
+  color: #333333;
+  width: 100%;
+}
+
+.highlight {
+  border: 1px solid red;
+  font-weight: bold;
+  font-size: 45px;
+  background-color: #333333;
+  width: 100%;
 }
 
 /* CUSTOM FORM ELEMENTS */

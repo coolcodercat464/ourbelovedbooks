@@ -1,0 +1,173 @@
+<%- head %>
+<br>
+    <div>
+    <h1>My Profile</h1>
+    <h1>General Settings</h1>
+    <div class="row">
+        <div class="col">
+            <h2>Profile Image Selection Here</h2>
+        </div>
+        <div class="col">
+            <h2>Anything else you might wanna add. Some suggestions:</h2>
+            <ul>
+                <li>Username change</li>
+                <li>Password change</li>
+                <li>Email change</li>
+                <li>Name Change</li>
+                <li>Address Change</li>
+                <li>Age Change</li>
+                <li>Bio Change</li>
+                <li>Reading Level Change</li>
+            </ul>
+            <form>
+                <input type="text">
+            </form>
+        </div>
+    </div>
+
+    <h2>Other Stats </h2>
+    <p>Include: wishlist, hasliked, hasdisliked, total reviews, xp</p>
+
+    <h2>Tag Preference System</h2>
+    <p>Fix button (looks ugly)</p>
+    <div class="row">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+            <h3>Most Favourite</h3>
+            <p>These are the best tags! Keep recommending me these!</p>
+            <ul class = "sortable" id="tags4">
+            </ul>
+        </div>
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+            <h3>Enjoyable</h3>
+            <p>I like these tags a lot, please recommend them!</p>
+            <ul class = "sortable" id="tags3">
+            </ul>
+        </div>
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+            <h3>Bin</h3>
+            <form class="form-inline my-2 my-lg-0" style="display: flex">
+                <input id="tagsin" class="form-control mr-sm-2" type="search" onkeyup="filtertags()" placeholder="Search" aria-label="Search">
+            </form><br>
+            <ul class = "sortable" id="bin">
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+            <h3>Okay-ish</h3>
+            <p>These tags are OK, but no strong feelings.</p>
+            <ul class = "sortable" id="tags2">
+            </ul>
+        </div>
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+            <h3>Dislike</h3>
+            <p>I don't like these tags, please refrain from recommending me books with these tags.</p>
+            <ul class = "sortable" id="tags1">
+            </ul>
+        </div>
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+            <h3>Most Hated</h3>
+            <p>These are my most hated tags! Please don't recommend these tags to me!</p>
+            <ul class = "sortable" id="tags0">
+            </ul>
+        </div>
+    </div>
+    <button onclick="submit()">Submit New Tiers!</button>
+</div>
+<%- footer %>
+
+<script>
+    allTags = {}
+    TagsTiers = {'tags0': [], 'tags1': [], 'tags2': [], 'tags3': [], 'tags4': [], 'bin': []}
+
+    fetch('/alltags').then(response => response.json()).then(data => {
+        for (each in data) {
+            tag = data[each]
+            allTags[tag.id] = tag.name
+            TagsTiers['bin'].push(tag.id);
+        }
+
+        fetch('/usertags').then(response => response.json()).then(data => {
+            data = data[0]
+            tags = [data.tags0, data.tags1, data.tags2, data.tags3, data.tags4];
+            tagsnames = ['tags0', 'tags1', 'tags2', 'tags3', 'tags4']
+
+            for (tagi in tags) {
+                tag = tags[tagi];
+                for (i in tag) {
+                    t = tag[i];
+                    TagsTiers[tagsnames[tagi]].push(t);
+                    TagsTiers['bin'].splice(TagsTiers['bin'].indexOf(t), 1);
+                }
+            }
+
+            for(var tier in TagsTiers) {
+                taggy = TagsTiers[tier];
+                for (i in taggy) {
+                    t = taggy[i];
+                    document.getElementById(tier).innerHTML += `<li class = "default">${allTags[t]} (${t})</li>`;
+                }
+            }
+        })
+    })
+
+    function filtertags() {
+        input = document.getElementById("tagsin")
+        filter = input.value.toUpperCase();
+        tagsf = document.getElementById("bin");
+        tags = tagsf.getElementsByTagName('li');
+
+        for (i = 0; i < tags.length; i++) {
+            b = tags[i];
+            txtValue = b.textContent || b.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tags[i].style.display = "";
+            } else {
+                tags[i].style.display = "none";
+            }
+        }
+    }
+
+    function submit() {
+        tagsnames = ['tags0', 'tags1', 'tags2', 'tags3', 'tags4']
+        var data = {
+            tags0: [],
+            tags1: [],
+            tags2: [],
+            tags3: [],
+            tags4: []
+        }
+
+        for (i in tagsnames) {
+            name = tagsnames[i];
+            nodes = document.getElementById(name).childNodes;
+            for (n in nodes) {
+                node = nodes[n]
+                text = node.textContent;
+                if (text != undefined && text.trim() != '') {
+                    data[name].push(parseInt(text.split(' ')[1].slice(1, -1)))
+                }
+            }
+        }
+
+        console.log(data)
+
+        fetch('http://localhost:3000/submittier', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = `/`;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+
+<%- end %>
