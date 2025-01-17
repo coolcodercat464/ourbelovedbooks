@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery UI Sortable - Example</title>
+        <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+            rel = "stylesheet">
+        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+        <style>
+            .sortable { 
+                list-style-type: none; 
+                margin: 0; 
+                float:left;
+                width: 40%;
+                list-style-type: none; 
+                margin-right: 10px;
+                background: #eee; 
+                padding: 5px;
+            }
+
+            .sortable li { 
+                padding: 0.4em;
+                padding-left: 0.6em;
+                margin: 0.1em;
+                width: 100%;
+            }
+
+            .default {
+                background: #cedc98;
+                border: 1px solid #DDDDDD;
+                color: #333333;
+                width: 100%;
+            }
+
+            .highlight {
+                border: 1px solid red;
+                font-weight: bold;
+                font-size: 45px;
+                background-color: #333333;
+                width: 100%;
+            }
+        </style>
+        
+        <script>
+            $(function() {
+            $( ".sortable" ).sortable({
+                connectWith: ".sortable",
+                placeholder: "highlight",
+                dropOnEmpty: true
+            });
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <div class="row">
+            <div class="col-lg" style="overflow-y: scroll; height: 50vw;">
+                <h3>List 1</h3>
+                <ul class = "sortable">
+                    <li class = "default" >A</li>
+                    <li class = "default">B</li>
+                    <li class = "default">C</li>
+                    <li class = "default">D</li>
+                </ul>
+            </div>
+            <div class="col-lg" style="overflow-y: scroll; height: 50vw;">
+                <h3>List 2</h3>
+                <ul class = "sortable">
+                    <li class = "default">a</li>
+                    <li class = "default">b</li>
+                    <li class = "default">c</li>
+                    <li class = "default">d</li>
+                </ul>
+            </div>
+            <div class="col-lg" style="overflow-y: scroll; height: 50vw;">
+                <h3>Bin</h3>
+                <ul class = "sortable">
+                    <li class = "default">A</li>
+                    <li class = "default">B</li>
+                    <li class = "default">C</li>
+                    <li class = "default">D</li>
+                    <li class = "default">A</li>
+                    <li class = "default">B</li>
+                    <li class = "default">C</li>
+                    <li class = "default">D</li>
+                    <li class = "default">A</li>
+                    <li class = "default">B</li>
+                    <li class = "default">C</li>
+                    <li class = "default">D</li>
+                    <li class = "default">A</li>
+                    <li class = "default">B</li>
+                    <li class = "default">C</li>
+                    <li class = "default">D</li>
+                    <li class = "default">A</li>
+                    <li class = "default">B</li>
+                    <li class = "default">C</li>
+                    <li class = "default">D</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

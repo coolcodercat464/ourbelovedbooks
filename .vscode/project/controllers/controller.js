@@ -17,6 +17,8 @@ async function users_list() {
     return res.rows
 }
 
+var urlinit = '/';
+
 const partialbeginloggedin = `
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -292,7 +294,7 @@ const signuppost = async (req, res)=>{
             const mq = 'INSERT INTO users (username, password, fname, email, bio, age, tags3, level, xp) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
             const result1 = await db.query(mq, [username, password, fname, email, bio, age, tags3, level, 0]);
         }
-        res.redirect('/home')
+        res.redirect(urlinit)
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
@@ -306,13 +308,14 @@ const loginpost = (req, res, next) => {
         }
         req.login(user, (err) => {
             req.session.username = user.username;
-            return res.redirect('/')
+            return res.redirect(urlinit)
         })
     })(req, res, next);
 }
 
 const reviewsget = (req, res) => {
     if (theuser == undefined) {
+        urlinit = '/reviews'
         res.redirect('/login')
     } else {
         res.render('review.html', {root: path.join(__dirname, '../public'), tags0: theuser.tags0, tags1: theuser.tags1, tags2: theuser.tags2, tags3: theuser.tags3, tags4: theuser.tags4, head: partialbeginloggedin, footer: partialfooter, end: partialend})
@@ -331,91 +334,125 @@ const homepost = async (req, res)=>{
 }
 
 const addbookpost = async (req, res)=>{ 
-    x = req.body;
+    if (req.isAuthenticated()) {
+        x = req.body;
 
-    isbn = x.isbn
-    title = x.title
-    teaser = x.teaser.trim()
-    minage = x.minage.trim()
-    reason = x.reason.trim()
-    pages = x.length
-    author = x.authors
-    tags = x.tags
+        isbn = x.isbn
+        title = x.title
+        teaser = x.teaser.trim()
+        minage = x.minage.trim()
+        reason = x.reason.trim()
+        pages = x.length
+        author = x.authors
+        tags = x.tags
 
-    console.log(x)
+        console.log(x)
 
-    const mq = 'SELECT id FROM books'
-    const result1 = await db.query(mq)
-    if (result1.rowCount == 0) {
-        id = 1
+        const mq = 'SELECT id FROM books'
+        const result1 = await db.query(mq)
+        if (result1.rowCount == 0) {
+            id = 1
+        } else {
+            id = result1.rows[result1.rowCount -1].id + 1
+        }
+
+        if (pages < 300) {
+            if (tags.includes('14') == false) {
+                tags.push('14')
+            }
+            if (tags.includes('15') == true) {
+                tags.splice(tags.indexOf('15'), 1)
+            } 
+            if (tags.includes('16') == true) {
+                tags.splice(tags.indexOf('16'), 1)
+            }
+        } else if (pages < 600) {
+            if (tags.includes('15') == false) {
+                tags.push('15')
+            }
+            if (tags.includes('16') == true) {
+                tags.splice(tags.indexOf('16'), 1)
+            } 
+            if (tags.includes('14') == true) {
+                tags.splice(tags.indexOf('14'), 1)
+            }
+        } else if (pages >= 600) {
+            if (tags.includes('16') == false) {
+                tags.push('16')
+            }
+            if (tags.includes('15') == true) {
+                tags.splice(tags.indexOf('15'), 1)
+            } 
+            if (tags.includes('14') == true) {
+                tags.splice(tags.indexOf('14'), 1)
+            }
+        }
+        
+        if (minage == '') {
+            if (tags.includes('43') == false) { tags.push('43') }
+            if (tags.includes('44') == true) { tags.splice(tags.indexOf('44')) }
+            tags = `{${tags.join(',')}}`
+            const mq = 'INSERT INTO books (id, isbn, title, author, teaser, tags) VALUES ($1, $2, $3, $4, $5, $6)'
+            const result = await db.query(mq, [id, isbn, title, author, teaser, tags])
+        } else {
+            if (tags.includes('44') == false) { tags.push('44') }
+            if (tags.includes('43') == true) { tags.splice(tags.indexOf('43')) }
+            tags = `{${tags.join(',')}}`
+            minage = minage + ':' + reason
+            const mq = 'INSERT INTO books (id, isbn, title, author, teaser, tags, minage) VALUES ($1, $2, $3, $4, $5, $6, $7)'
+            const result = await db.query(mq, [id, isbn, title, author, teaser, tags, minage])
+        }
+
+        res.send({'id':id})
     } else {
-        id = result1.rows[result1.rowCount -1].id + 1
+        res.redirect('/login')
     }
-
-    if (pages < 300) {
-        if (tags.includes('14') == false) {
-            tags.push('14')
-        }
-        if (tags.includes('15') == true) {
-            tags.splice(tags.indexOf('15'), 1)
-        } 
-        if (tags.includes('16') == true) {
-            tags.splice(tags.indexOf('16'), 1)
-        }
-    } else if (pages < 600) {
-        if (tags.includes('15') == false) {
-            tags.push('15')
-        }
-        if (tags.includes('16') == true) {
-            tags.splice(tags.indexOf('16'), 1)
-        } 
-        if (tags.includes('14') == true) {
-            tags.splice(tags.indexOf('14'), 1)
-        }
-    } else if (pages >= 600) {
-        if (tags.includes('16') == false) {
-            tags.push('16')
-        }
-        if (tags.includes('15') == true) {
-            tags.splice(tags.indexOf('15'), 1)
-        } 
-        if (tags.includes('14') == true) {
-            tags.splice(tags.indexOf('14'), 1)
-        }
-    }
-    
-    if (minage == '') {
-        if (tags.includes('43') == false) { tags.push('43') }
-        if (tags.includes('44') == true) { tags.splice(tags.indexOf('44')) }
-        tags = `{${tags.join(',')}}`
-        const mq = 'INSERT INTO books (id, isbn, title, author, teaser, tags) VALUES ($1, $2, $3, $4, $5, $6)'
-        const result2 = await db.query(mq, [id, isbn, title, author, teaser, tags])
-    } else {
-        if (tags.includes('44') == false) { tags.push('44') }
-        if (tags.includes('43') == true) { tags.splice(tags.indexOf('43')) }
-        tags = `{${tags.join(',')}}`
-        minage = minage + ':' + reason
-        const mq = 'INSERT INTO books (id, isbn, title, author, teaser, tags, minage) VALUES ($1, $2, $3, $4, $5, $6, $7)'
-        const result2 = await db.query(mq, [id, isbn, title, author, teaser, tags, minage])
-    }
-    
-    res.send({'id':id})
 }
 
 const ratebookpost = async (req, res)=>{ 
     if (theuser == undefined) {
         res.redirect('/login')
     } else {
-        x = req.body;
+        const mq1 = 'SELECT username FROM reviews'
+        const result1 = await db.query(mq)
 
-        const mq2 = 'INSERT INTO reviews (username, date, title, body, stars, book) VALUES ($1, $2, $3, $4, $5, $6)'
-        const result2 = await db.query(mq2, [theuser.username, x.date, x.title, x.review, x.rating, x.bookid])
+        isin = false
+        for (names in result1) {
+            name = result1[names];
+            if (name == theuser.username) {
+                isin = true
+            }
+        }
+
+        if (isin) {
+
+        } else {
+            x = req.body;
+
+            const mq = 'INSERT INTO reviews (username, date, title, body, stars, book) VALUES ($1, $2, $3, $4, $5, $6)'
+            const result = await db.query(mq, [theuser.username, x.date, x.title, x.review, x.rating, x.bookid])
+
+            const mq2 = 'SELECT stars FROM reviews WHERE book = $1'
+            const result2 = await db.query(mq2, [x.bookid])
+            console.log(result2.rows)
+
+            size = 0;
+            sum = 0;
+            for (i in result2.rows) {
+                rating = result2.rows[i].stars;
+                sum = sum + rating;
+                size ++;
+            }
+            const mq3 = 'UPDATE books SET stars = $1 WHERE id = $2'
+            const result3 = await db.query(mq3, [sum/size, x.bookid])
+        }
     }
 }
 
 const reviewpageget = async (req, res) => {
     bookid = req.params.bookid
     if (theuser == undefined) {
+        urlinit = `/reviewpage/${bookid}`
         res.redirect('/login')
     } else {
         res.render('reviewpage.html', {root: path.join(__dirname, '../public'), id: parseInt(bookid), head: partialbeginloggedin, footer: partialfooter, end: partialend})
@@ -428,6 +465,7 @@ const profileget = async (req, res) => {
 
 const usertags = async (req, res) => {
     if (theuser == undefined) {
+        urlinit = '/usertags'
         res.redirect('/login')
     } else {
         const mq = 'SELECT tags0, tags1, tags2, tags3, tags4 FROM users WHERE username = $1'
