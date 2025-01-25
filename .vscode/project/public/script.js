@@ -1,6 +1,6 @@
 
 function breakpoint1000() {
-  if (window.innerWidth <= 1000) {
+  if (window.innerWidth < 1000) {
     affected = document.getElementsByClassName("breakpoint1000");
     for (x in affected) {
         affected[x].classList.remove("together");

@@ -30,20 +30,20 @@
 
     <h2>Tag Preference System</h2>
     <p>Fix button (looks ugly)</p>
-    <div class="row">
-        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+    <div class="row" style="margin-bottom: 2em;">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
             <h3>Most Favourite</h3>
             <p>These are the best tags! Keep recommending me these!</p>
             <ul class = "sortable" id="tags4">
             </ul>
         </div>
-        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
             <h3>Enjoyable</h3>
             <p>I like these tags a lot, please recommend them!</p>
             <ul class = "sortable" id="tags3">
             </ul>
         </div>
-        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
             <h3>Bin</h3>
             <form class="form-inline my-2 my-lg-0" style="display: flex">
                 <input id="tagsin" class="form-control mr-sm-2" type="search" onkeyup="filtertags()" placeholder="Search" aria-label="Search">
@@ -54,19 +54,19 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
             <h3>Okay-ish</h3>
             <p>These tags are OK, but no strong feelings.</p>
             <ul class = "sortable" id="tags2">
             </ul>
         </div>
-        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
             <h3>Dislike</h3>
             <p>I don't like these tags, please refrain from recommending me books with these tags.</p>
             <ul class = "sortable" id="tags1">
             </ul>
         </div>
-        <div class="col-lg" style="overflow-y: scroll; height: 40vw;">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
             <h3>Most Hated</h3>
             <p>These are my most hated tags! Please don't recommend these tags to me!</p>
             <ul class = "sortable" id="tags0">
@@ -74,12 +74,50 @@
         </div>
     </div>
     <button onclick="submit()">Submit New Tiers!</button>
+
+
+    <h2>Reading Lists</h2>
+    <p>Fix button (looks ugly)</p>
+    <div class="row" style="margin-bottom: 2em;">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
+            <h3>Wish List</h3>
+            <p>Books I want to read in the future.</p>
+            <ul class = "sortable" id="wish">
+            </ul>
+        </div>
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
+            <h3>All Books</h3>
+            <form class="form-inline my-2 my-lg-0" style="display: flex">
+                <input id="booksin" class="form-control mr-sm-2" type="search" onkeyup="filterbooks()" placeholder="Search" aria-label="Search">
+            </form><br>
+            <ul class = "sortable" id="bbin">
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
+            <h3>Liked List</h3>
+            <p>I liked these books!</p>
+            <ul class = "sortable" id="liked">
+            </ul>
+        </div>
+        <div class="col-lg" style="overflow-y: scroll; height: 40vw; margin-bottom: 1em;">
+            <h3>Disliked List</h3>
+            <p>I didn't enjoy these books.</p>
+            <ul class = "sortable" id="disliked">
+            </ul>
+        </div>
+    </div>
+    <button onclick="bsubmit()">Submit New Lists!</button>
 </div>
 <%- footer %>
 
 <script>
     allTags = {}
+    allBooks = {}
     TagsTiers = {'tags0': [], 'tags1': [], 'tags2': [], 'tags3': [], 'tags4': [], 'bin': []}
+    BookTiers = {'wish': [], 'liked': [], 'disliked': [], 'bbin': []}
 
     fetch('/alltags').then(response => response.json()).then(data => {
         for (each in data) {
@@ -112,6 +150,40 @@
         })
     })
 
+    fetch('/allbooks').then(response => response.json()).then(books => {
+        for (i in books) {
+            book = books[i]
+            allBooks[book.id] = `"${book.title}" by ${book.author}`
+            BookTiers['bbin'].push(book.id);
+        }
+
+        fetch('/userlists').then(response => response.json()).then(data => {
+            data = data[0]
+
+            lists = [data.wishlist, data.hasliked, data.hasdisliked];
+            listnames = ['wish', 'liked', 'disliked']
+
+            console.log(lists)
+
+            for(i in lists) {
+                list = lists[i]
+                if (list != null) {
+                    for (j in list) {
+                        l = list[j]
+                        BookTiers[listnames[i]].push(l);
+                        BookTiers['bbin'].splice(BookTiers['bbin'].indexOf(l), 1);
+                    }
+                }
+            }
+
+            for (listname in BookTiers) {
+                for (i in BookTiers[listname]) {
+                    document.getElementById(listname).innerHTML += `<li class = "default">${allBooks[BookTiers[listname][i]]} (${BookTiers[listname][i]})</li>`;
+                }
+            }
+        })
+    })
+
     function filtertags() {
         input = document.getElementById("tagsin")
         filter = input.value.toUpperCase();
@@ -125,6 +197,23 @@
                 tags[i].style.display = "";
             } else {
                 tags[i].style.display = "none";
+            }
+        }
+    }
+
+    function filterbooks() {
+        input = document.getElementById("booksin")
+        filter = input.value.toUpperCase();
+        booksf = document.getElementById("bbin");
+        books = booksf.getElementsByTagName('li');
+
+        for (i = 0; i < books.length; i++) {
+            b = books[i];
+            txtValue = b.textContent || b.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                books[i].style.display = "";
+            } else {
+                books[i].style.display = "none";
             }
         }
     }
@@ -146,7 +235,7 @@
                 node = nodes[n]
                 text = node.textContent;
                 if (text != undefined && text.trim() != '') {
-                    data[name].push(parseInt(text.split(' ')[1].slice(1, -1)))
+                    data[name].push(parseInt(text.split(' ')[text.split(' ').length - 1].slice(1, -1)))
                 }
             }
         }
@@ -162,7 +251,48 @@
         })
         .then(response => response.json())
         .then(data => {
-            window.location.href = `/`;
+            alert("Successfully updated tag tiers")
+            window.location.href = `/profile`;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    function bsubmit() {
+        listnames = ['wish', 'liked', 'disliked']
+        var data = {
+            wish: [],
+            liked: [],
+            disliked: []
+        }
+
+        for (i in listnames) {
+            name = listnames[i];
+            nodes = document.getElementById(name).childNodes;
+            for (n in nodes) {
+                node = nodes[n]
+                text = node.textContent;
+                console.log(text)
+                if (text != undefined && text.trim() != '') {
+                    data[name].push(parseInt(text.split(' ')[text.split(' ').length - 1].slice(1, -1)))
+                }
+            }
+        }
+
+        console.log(data)
+
+        fetch('http://localhost:3000/submitlists', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Successfully updated reading lists")
+            window.location.href = `/profile`;
         })
         .catch((error) => {
             console.error('Error:', error);

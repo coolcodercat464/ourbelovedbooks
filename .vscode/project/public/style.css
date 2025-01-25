@@ -131,24 +131,27 @@ a.classica {
   inherits: false;
 }
 
-button:hover:not(.button-2), button:active:not(.button-2) {
+button:hover:not(.button-2, .buttonexception, .buttoncolorexception), button:active:not(.button-2, .buttonexception, .buttoncolorexception) {
   --buttonbg1: rgb(44, 145, 208);
   --buttonbg2: rgb(0, 134, 218);
   color: white;
 }
 
-button:disabled:not(.button-2) {
+button:disabled:not(.button-2, .buttonexception) {
   color: rgb(54, 54, 54);
   background-color: rgb(156, 156, 156);
 }
 
-button:not(.button-2), input[type=submit] {
+button:not(.button-2, .buttonexception), input[type=submit] {
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   border-radius: 7px;
   font-size: 15px;
+}
+
+button:not(.button-2, .buttonexception, .buttoncolorexception), input[type=submit] {
   background-image: linear-gradient(var(--buttonbg1), var(--buttonbg2)); 
   color: black;
   transition: color 0.6s, --buttonbg1 0.6s, --buttonbg2 0.6s;

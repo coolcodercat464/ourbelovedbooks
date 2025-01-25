@@ -3,73 +3,145 @@
     <div id="book-details">
 
     </div>
-    <div class="row">
+    <div class="row" style="padding-bottom: 3em;">
         <div class="col-sm">
             <h4>Want to read this book?</h4>
-            <button>Add to Reading List</button>
+            <button onclick="wishlist()">Add to Reading List</button>
         </div>
         <div class="col-sm">
             <h4>Liked this book?</h4>
-            <button>Add to Liked List</button>
+            <button onclick="likedlist()">Add to Liked List</button>
         </div>
         <div class="col-sm">
             <h4>Didn't enjoy this book?</h4>
-            <button>Add to Disliked List</button>
+            <button onclick="dislikedlist()">Add to Disliked List</button>
         </div>
     </div>
-    <br><br><br>
+
     <h4>If you read this book, please contribute to the community and rate it! For consistency, a 1 is the worst book you have ever read, and 5 is the best book you have ever read. Please provide a review!</h4>
-    <div>
-        <span><i class="fa fa-star" style="font-size: 1.5em; color: #e36714;" id="star1"></i></span> 
-        <span><i class="fa fa-star" style="font-size: 1.5em; color: white;"  id="star2"></i></span> 
-        <span><i class="fa fa-star" style="font-size: 1.5em; color: white;"  id="star3"></i></span> 
-        <span><i class="fa fa-star" style="font-size: 1.5em; color: white;"  id="star4"></i></span> 
-        <span><i class="fa fa-star" style="font-size: 1.5em; color: white;"  id="star5"></i></span>
+    <div style="padding: 1em;">
+        <span><i class="fa fa-star" style="font-size: 3em; color: #e36714;" id="star1"></i></span> 
+        <span><i class="fa fa-star" style="font-size: 3em; color: white;"  id="star2"></i></span> 
+        <span><i class="fa fa-star" style="font-size: 3em; color: white;"  id="star3"></i></span> 
+        <span><i class="fa fa-star" style="font-size: 3em; color: white;"  id="star4"></i></span> 
+        <span><i class="fa fa-star" style="font-size: 3em; color: white;"  id="star5"></i></span>
     </div><br>
+    <button onclick="submitsstars()">Rate it!</button>
 
+    <h2>Rating by Category</h2>
+    <div id="ratings_by_category" style="max-height: 20vh; padding-left: 1em; padding-right: 1em; overflow: scroll;">
+
+    </div>
+
+    <h2>TLDR Review Bites</h2>
+    <p>While we want to encourage people to write their own reviews, we don't expect other users to read pages of reviews to
+        see if the book is for them. For this reason, we have a TLDR Review Bites feature! Once you have rated this book,
+        write a sentence or two about why you like this book, and what kinds of readers would enjoy this book. Refrain from
+        repeating others, as we want to keep this as compact as possible! If somebody has already written your idea, upvote it
+        so more people can see it! You can write what you think in your own words in teh full reviews section :).
+
+        <br><br><b>Note:</b> Don't take downvotes personally! When upvoting/downvoting somebody, don't do this based on 
+        how much you agree with them but rather, whether others who chose the same amount of stars have already mentioned 
+        it or if it wouldn't be helpful to others.
+        <br><b>Another Note:</b> Please <b>do not have spoilers</b>. Lots of people who haven't read the book are going to be
+        reading what you write. If you find another TLDR Bite that has spoilers, please downvote so less people will see it.
+    </p>
     <div class="row">
-        <div class="col-lg-11">
-            <input type="text" id="reviewtitle" placeholder="Title">
-            <textarea id="reviewtext" style="width:100%">
-Give a brief overview of the book:
-...
-
-What do you think about this book overall?
-...
-
-What parts did you like? Why do you like them?
-- 
-- 
-- 
-
-What parts did you dislike? How could they have been improved?
--
--
--
-
-Who do you think would like this book?
-- 
-- 
-- 
-
-Who do you think would dislike this book?
-- 
-- 
-- 
-
-What biases do you think you have as a reader that others might want to consider?
-- 
-- 
-- 
-            </textarea>
+        <div class="col-lg-4">
+            <input type="text" id="tldr" placeholder="Title">
+            <button onclick="submittldr()">Add it!</button>
         </div>
-        <div class="col-lg-1">
-            <button onclick="submitrating()">Rate it!</button>
+        <div class="col-lg-4">
+            <h3>5 Stars</h3>
+            <div id="5tldr" style="max-height: 10vh; overflow: scroll;">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>4 Stars</h3>
+            <div id="4tldr" style="max-height: 10vh; overflow: scroll;">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>3 Stars</h3>
+            <div id="3tldr" style="max-height: 10vh; overflow: scroll;">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>2 Stars</h3>
+            <div id="2tldr" style="max-height: 10vh; overflow: scroll;">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>1 Star</h3>
+            <div id="1tldr" style="max-height: 10vh; overflow: scroll;">
+            </div>
         </div>
     </div>
     <br><br><br>
-    <h2>Reviews</h2>
-    <div id="reviews">
+    <div id="tldrbites" style="max-height: 20vh; padding-left: 1em; padding-right: 1em; overflow: scroll;">
+
+    </div>
+
+    <h2>Full Reviews</h2>
+    <p>What did you think about this book? Write your thoughts here! This can be bullet-points or a well-formed essay.
+        How you use this space is yours to choose!
+        <br><br>
+        <b>Note on Spoilers:</b> Please remember to mention spoiler alerts at the top of your review, and refrain from basing too much on the plot.
+    </p>
+    <div class="row" style="padding: 0;">
+        <div class="col-lg-10" style="padding: 0;">
+            <input type="text" id="reviewtitle" placeholder="Title" style="width: 100%;">
+        </div>
+        <div class="col-lg-2" style="padding: 0;">
+            <button onclick="submitrating()" style="width: 100%;">Review it!</button>
+        </div>
+    </div>
+    
+    <textarea id="reviewtext" style="width:100%" rows="10">
+Write your review here! Some things to think about:
+- Worldbuilding
+- Character development
+- Plot Quality
+- Writing Style and Tone
+- Relevance
+- Reading Difficulty
+- and more! Anything you like!
+</textarea>
+    
+    <br><br>
+    <div id="reviews" style="max-height: 80vh; padding-left: 1em; padding-right: 1em; overflow: scroll;">
+
+    </div>
+
+    <h2>Summaries and Analysis</h2>
+    <p>
+        <b>WARNING: SPOILERS AHEAD!</b> If you haven't read this book, please note that this section contains spoilers!
+        This section is dedicated to helping people, particularly school students, understand the plot and techniques 
+        that go with it. We encourage you to read the book first before coming here!
+    </p>
+    <div class="row" style="padding: 0;">
+        <div class="col-lg-10" style="padding: 0;">
+            <input type="text" id="snatitle" placeholder="Title" style="width: 100%;">
+        </div>
+        <div class="col-lg-2" style="padding: 0;">
+            <button onclick="submitsna()" style="width: 100%;">Submit it!</button>
+        </div>
+    </div>
+    
+    <textarea id="snatext" style="width:100%" rows="15">
+Write your review here! Some ideas for how you can use this space:
+- Example essay (if not written by you, please acknowledge the original writer)
+- Chapter analysis and outline of techniques used
+- Full book overview and description of macrotechniques
+- Background information about the book's context and the author's life and the relevance with the Plot
+- Plot summaries (especially of confusing bits)
+- Vocabulary lists as well as exemplar phrases/sentences from the book
+</textarea>
+    
+    <br><br>
+    <div id="snas" style="max-height: 80vh; padding-left: 1em; padding-right: 1em; overflow: scroll;">
 
     </div>
 </div>
@@ -96,6 +168,7 @@ What biases do you think you have as a reader that others might want to consider
     star5 = document.getElementById('star5')
     decided = false;
     stars = 1;
+    alr_rated = false;
 
     star2.addEventListener("mouseover", function( event ) {
         if (!decided) {
@@ -181,7 +254,7 @@ What biases do you think you have as a reader that others might want to consider
     })
 
     function submitrating() {
-        if (decided) {
+        if (alr_rated) {
             let today = new Date().toLocaleDateString()
 
             var data = {
@@ -200,13 +273,177 @@ What biases do you think you have as a reader that others might want to consider
                 body: JSON.stringify(data)
             })
             .then(response => response.json())
-            .then(data => {
-                window.location.reload();
-            })
             .catch((error) => {
                 console.error('Error:', error);
             });
+        } else {
+            alert("Pick your rating by clicking the stars!")
         }
+
+        window.location.reload();
+    }
+
+    function submitsna() {
+        let today = new Date().toLocaleDateString()
+
+        var data = {
+            rating: stars,
+            text: document.getElementById('snatext').value,
+            title: document.getElementById('snatitle').value,
+            bookid: thebook[0],
+            date: today
+        }
+
+        fetch('http://localhost:3000/analysebook', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        window.location.reload();
+    }
+
+    function submitsstars() {
+        if (decided) {
+            var data = {
+                rating: stars,
+                bookid: thebook[0],
+            }
+
+            fetch('http://localhost:3000/submitstars', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            alr_rated = true;
+
+        } else {
+            alert("Pick your rating by clicking the stars!")
+        }
+    }
+
+    function submittldr() {
+        if (alr_rated) {
+            var data = {
+                rating: stars,
+                bookid: thebook[0],
+                tldr: document.getElementById('tldr').value
+            }
+
+            fetch('http://localhost:3000/submittldr', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            
+        } else {
+            alert("Pick your rating by clicking the stars!")
+        }
+
+        window.location.reload();
+    }
+
+    function vote(id, sign) {
+        var data = {
+            id: id,
+            inc: sign
+        }
+
+        fetch('http://localhost:3000/votetldr', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        window.location.reload();
+    }
+
+    function wishlist() {
+        var data = {
+            bookid: thebook[0]
+        }
+
+        fetch('http://localhost:3000/addwish', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        alert("Successfully added to wishlist!")
+        window.location.reload();
+    }
+
+    function likedlist() {
+        var data = {
+            bookid: thebook[0]
+        }
+
+        fetch('http://localhost:3000/addliked', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        alert("Successfully added to liked list!")
+        window.location.reload();
+    }
+
+    function dislikedlist() {
+        var data = {
+            bookid: thebook[0]
+        }
+
+        fetch('http://localhost:3000/adddisliked', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        alert("Successfully added to disliked list!")
+        window.location.reload();
     }
     
     const sleep = (milliseconds) => {
@@ -228,6 +465,7 @@ What biases do you think you have as a reader that others might want to consider
         for (each in data) {
             book = data[each];
             if (book.id == id) {
+                book.teaser = book.teaser.replaceAll("\n", "<br>").replaceAll("[", "<").replaceAll("]", ">")
                 thebook = [book.id, book.title, book.tags, book.stars, book.teaser, book.author, book.isbn, book.minage]
 
                 booktags = ''
@@ -278,15 +516,85 @@ What biases do you think you have as a reader that others might want to consider
                     for (each in data) {
                         review = data[each]
                         if (review.book == thebook[0]) {
-                            console.log(review)
                             document.getElementById('reviews').innerHTML += `
                         <div class="card">
                             <div class="card-body" style="margin: 0 !important;">
                                 <h3 class="card-title titles">${review.title}</h3>
                                 <h6 class="card-subtitle mb-2 text-muted">By ${review.username} on ${review.date} with ${review.stars} stars</h6>
-                                <div class="card-text">${review.body} </div>
+                                <div class="card-text">${review.body.replaceAll("\n", "<br>").replaceAll("[", "<").replaceAll("]", ">")} </div>
                             </div>
                         </div>
+                            `
+                        }
+                    }
+                })
+                
+                fetch('/allsnas').then(response => response.json()).then(data => {
+                    for (each in data) {
+                        sna = data[each]
+                        if (sna.book == thebook[0]) {
+                            document.getElementById('snas').innerHTML += `
+                        <div class="card">
+                            <div class="card-body" style="margin: 0 !important;">
+                                <h3 class="card-title titles">${sna.title}</h3>
+                                <h6 class="card-subtitle mb-2 text-muted">By ${sna.username} on ${sna.date}</h6>
+                                <div class="card-text">${sna.body.replaceAll("\n", "<br>").replaceAll("[", "<").replaceAll("]", ">")} </div>
+                            </div>
+                        </div>
+                            `
+                        }
+                    }
+                })
+
+                fetch('/userratings').then(response => response.json()).then(data => {
+                    for (each in data) {
+                        set = data[each]
+                        if (set.book == book.id) {
+                            stars = set.stars;
+                            alr_rated = true;
+                            decided = true;
+                            for (i = 1; i <= stars; i ++) {
+                                document.getElementById('star' + i.toString()).style.color = '#e36714';
+                            }
+                        }
+                    }
+                })
+
+                fetch('/alltldrs').then(response => response.json()).then(data => {
+                    data.sort((a, b) => b.upvotes - a.upvotes);
+                    for (each in data) {
+                        set = data[each]
+                        if (set.book == book.id) {
+                            if (set.upvoters != null && set.upvoters.includes('<%- username %>')) {
+                                upstyle = 'style="background-color: #bcdb6e !important; border: 2px solid green"'
+                                console.log(upstyle)
+                            } else {
+                                upstyle = ''
+                            }
+                            
+                            if (set.downvoters != null && set.downvoters.includes('<%- username %>')) {
+                                downstyle = 'style="background-color: #db7c6e !important; border: 2px solid red"'
+                            } else {
+                                downstyle = ''
+                            }
+
+                            document.getElementById(set.stars.toString() + 'tldr').innerHTML += `
+                            <div class='row'>
+                                <div class='col-3'>
+                                    <div class='row'>
+                                        <div class='col'>
+                                            <h4>${set.upvotes}</h4>
+                                        </div>
+                                        <div class='col'>
+                                            <button class='buttoncolorexception' onclick='vote(${set.id}, "+")' ${upstyle}>^</button>
+                                            <button class='buttoncolorexception' onclick='vote(${set.id}, "-")' ${downstyle}>˅</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-9'>
+                                    ${set.tldr} (<i>${set.username}</i>)
+                                </div>
+                            </div>
                             `
                         }
                     }

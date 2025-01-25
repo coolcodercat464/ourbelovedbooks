@@ -17,8 +17,11 @@ async function users_list() {
     return res.rows
 }
 
+// save initial url so after login it doesnt get lost
 var urlinit = '/';
 
+
+// templates
 const partialbeginloggedin = `
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -40,10 +43,11 @@ const partialbeginloggedin = `
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         
-        <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-            rel = "stylesheet">
+        <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
         <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -70,9 +74,8 @@ const partialbeginloggedin = `
                 <div class="col-2" style="float: left;">
                     <a class="navlink" href="/reviews"><h4>Reviews</h4></a>
                 </div>
-                <div class="col-2" style="float: left;">
-                    <div class="dropdown">
-                        <button type="button" style="all: unset; font-family: 'Nerko One', cursive;
+                <div class="dropdown col-2" style="float: left;">
+                    <button type="button" style="all: unset; font-family: 'Nerko One', cursive;
                         font-weight: 400;
                         font-style: normal;
                         font-size: 1.4em;
@@ -83,13 +86,12 @@ const partialbeginloggedin = `
                         flex-wrap: wrap;" class="navlink h-25" data-toggle="dropdown">
                           Account &nbsp; <i class="fa fa-user-circle"></i>
                         </button>
-                        <div class="dropdown-menu">
-                          <a href="/profile">Profile</a>
-                          <a href="#">Settings</a>
-                          <a href="#">Inbox</a>
-                          <a href="#">Signout</a>
-                        </div>
-                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Setting</a></li>
+                        <li><a class="dropdown-item" href="#">Inbox</a></li>
+                        <li><a class="dropdown-item" href="#">Signout</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -143,8 +145,10 @@ const partialbeginloggedout = `
         <meta name="description" content="Our Beloved Books is fostered to teenagers who love books. Here, we provide book reviews and analysis, as well as a community group for the curious to ask book-related questions!">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     </head>
     <body style="background-color: rgb(214, 231, 255); margin: 0 !important; ">
         <div class="navbar navbar-expand-lg" id="header" style="max-width:100vw;">
@@ -195,13 +199,9 @@ const partialbeginloggedout = `
 
 const partialend = `
         <script src="script.js" async defer></script>
-    <script type="text/javascript"
-        src=
-"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script type="text/javascript"
+        <script type="text/javascript"
         src=
 "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>
 `
@@ -211,6 +211,7 @@ const partialfooter = `
             <h2>Copyright © 2024 Our Beloved Books. All rights reserved.</h2>
         </footer>`
 
+// more passport stuff for sessions
 passport.use(new LocalStrategy(
     { usernameField: 'username' },
     async (username, password, done) => {
@@ -245,6 +246,8 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // Methods to be executed on routes 
+
+// home page
 const indexget = (req, res)=>{
     if (req.isAuthenticated()) {
         res.render('home.html', {root: path.join(__dirname, '../public'), user: req.session.username, head: partialbeginloggedin, footer: partialfooter, end: partialend});
@@ -252,7 +255,16 @@ const indexget = (req, res)=>{
         res.render('teaser.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedout, footer: partialfooter, end: partialend});
     }
 } 
-  
+
+const homeget = (req, res) => {
+    res.render('home.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedin, footer: partialfooter, end: partialend})
+}
+
+const homepost = async (req, res)=>{ 
+    res.render('home.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedin, footer: partialfooter, end: partialend})
+}
+
+// signup, terms of service, and logins
 const signupget = (req, res)=>{ 
     res.render('signup.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedout, footer: partialfooter, end: partialend} );
 } 
@@ -265,6 +277,7 @@ const loginget = (req, res) => {
     res.render('login.html', {root: path.join(__dirname, '../public'), message: 'none', ont: 'none', head: partialbeginloggedout, footer: partialfooter, end: partialend})
 }
 
+// posting for the above
 const signuppost = async (req, res)=>{ 
     x = req.body;
 
@@ -313,6 +326,7 @@ const loginpost = (req, res, next) => {
     })(req, res, next);
 }
 
+// stuff for reviews (get)
 const reviewsget = (req, res) => {
     if (theuser == undefined) {
         urlinit = '/reviews'
@@ -322,17 +336,17 @@ const reviewsget = (req, res) => {
     }
 }
 
-const reviewspost = async (req, res)=>{ 
+const reviewpageget = async (req, res) => {
+    bookid = req.params.bookid
+    if (theuser == undefined) {
+        urlinit = `/reviewpage/${bookid}`
+        res.redirect('/login')
+    } else {
+        res.render('reviewpage.html', {root: path.join(__dirname, '../public'), id: parseInt(bookid), head: partialbeginloggedin, footer: partialfooter, end: partialend, username: theuser.username})
+    }
 }
 
-const homeget = (req, res) => {
-    res.render('home.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedin, footer: partialfooter, end: partialend})
-}
-
-const homepost = async (req, res)=>{ 
-    res.render('home.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedin, footer: partialfooter, end: partialend})
-}
-
+// adding books, reviews, etc... (post for reviews)
 const addbookpost = async (req, res)=>{ 
     if (req.isAuthenticated()) {
         x = req.body;
@@ -413,66 +427,188 @@ const ratebookpost = async (req, res)=>{
     if (theuser == undefined) {
         res.redirect('/login')
     } else {
-        const mq1 = 'SELECT username FROM reviews'
-        const result1 = await db.query(mq)
+        x = req.body;
+
+        const mq = 'INSERT INTO reviews (username, date, title, body, stars, book) VALUES ($1, $2, $3, $4, $5, $6)'
+        const result = await db.query(mq, [theuser.username, x.date, x.title, x.review, x.rating, x.bookid])
+    }
+}
+
+const analysebookpost = async (req, res)=>{ 
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+        const mq = 'INSERT INTO sna (username, date, title, body, book) VALUES ($1, $2, $3, $4, $5)'
+        const result = await db.query(mq, [theuser.username, x.date, x.title, x.text, x.bookid])
+    }
+}
+
+const submitstarspost = async (req, res)=>{ 
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+        const mq1 = 'SELECT username FROM ratings'
+        const result1 = await db.query(mq1)
 
         isin = false
-        for (names in result1) {
-            name = result1[names];
-            if (name == theuser.username) {
+        for (names in result1.rows) {
+            n = result1.rows[names];
+            if (n.username == theuser.username) {
                 isin = true
             }
         }
 
         if (isin) {
-
+            const mq = 'UPDATE ratings SET stars = $1 WHERE username = $2'
+            const result = await db.query(mq, [x.rating, theuser.username])
         } else {
-            x = req.body;
+            const mq = 'INSERT INTO ratings (username, stars, book) VALUES ($1, $2, $3)'
+            const result = await db.query(mq, [theuser.username, x.rating, x.bookid])
+        }
 
-            const mq = 'INSERT INTO reviews (username, date, title, body, stars, book) VALUES ($1, $2, $3, $4, $5, $6)'
-            const result = await db.query(mq, [theuser.username, x.date, x.title, x.review, x.rating, x.bookid])
+        const mq2 = 'SELECT stars FROM ratings WHERE book = $1'
+        const result2 = await db.query(mq2, [x.bookid])
 
-            const mq2 = 'SELECT stars FROM reviews WHERE book = $1'
-            const result2 = await db.query(mq2, [x.bookid])
-            console.log(result2.rows)
+        size = 0;
+        sum = 0;
+        for (i in result2.rows) {
+            rating = result2.rows[i].stars;
+            sum = sum + rating;
+            size ++;
+        }
+        const mq4 = 'UPDATE books SET stars = $1 WHERE id = $2'
+        const result4 = await db.query(mq4, [sum/size, x.bookid])
+    }
+}
 
-            size = 0;
-            sum = 0;
-            for (i in result2.rows) {
-                rating = result2.rows[i].stars;
-                sum = sum + rating;
-                size ++;
-            }
-            const mq3 = 'UPDATE books SET stars = $1 WHERE id = $2'
-            const result3 = await db.query(mq3, [sum/size, x.bookid])
+const submittldrpost = async (req, res)=>{ 
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+
+        const mq = 'INSERT INTO tldrbites (username, stars, book, tldr, upvotes) VALUES ($1, $2, $3, $4, 0)'
+        const result = await db.query(mq, [theuser.username, x.rating, x.bookid, x.tldr])
+    }
+}
+
+const votetldr = async (req, res)=>{ 
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+
+        const mq = 'SELECT upvotes FROM tldrbites WHERE id = $1'
+        const result = await db.query(mq, [x.id])
+        currentvotes = parseInt(result.rows[0].upvotes)
+
+        inc = (x.inc === '+') ? 1 : -1;
+        keyword = (x.inc === '+') ? 'up' : 'down';
+        oppkey = (x.inc === '+') ? 'down' : 'up';
+
+        const mq3u = 'SELECT upvoters FROM tldrbites WHERE id = $1'
+        upv = await db.query(mq3u, [x.id])
+
+        const mq3d = 'SELECT downvoters FROM tldrbites WHERE id = $1'
+        dov = await db.query(mq3d, [x.id])
+
+        voters = {'up': upv.rows[0]['upvoters'], 'down': dov.rows[0]['downvoters']}
+
+        console.log(voters)
+
+        if (inc === 1) {
+            const mq3 = 'SELECT upvoters FROM tldrbites WHERE id = $1'
+            result3 = await db.query(mq3, [x.id])
+        } else {
+            const mq3 = 'SELECT downvoters FROM tldrbites WHERE id = $1'
+            result3 = await db.query(mq3, [x.id])
+        }
+        
+        if (voters[oppkey] != null && voters[oppkey].includes(theuser.username)) {
+            l = voters[oppkey]
+            l.splice(l.indexOf(theuser.username))
+            const mq6 = `UPDATE tldrbites SET upvotes = $1, ${oppkey}voters = $2 WHERE id = $3`
+            const result6 = await db.query(mq6, [currentvotes + inc, '{' + l.join(',') + '}', x.id])
+            currentvotes += inc
+        }
+
+        if (result3.rows[0][keyword + 'voters'] == null) {
+            const mq2 = `UPDATE tldrbites SET upvotes = $1, ${keyword}voters = $2 WHERE id = $3`
+            const result2 = await db.query(mq2, [currentvotes + inc, '{' + theuser.username + '}', x.id])
+        } else if (result3.rows[0][keyword + 'voters'].includes(theuser.username)) {
+            l = result3.rows[0][keyword + 'voters']
+            l.splice(l.indexOf(theuser.username))
+            const mq2 = `UPDATE tldrbites SET upvotes = $1, ${keyword}voters = $2 WHERE id = $3`
+            const result2 = await db.query(mq2, [currentvotes - inc, '{' + l.join(',') + '}', x.id])
+        } else {
+            l = result3.rows[0][keyword + 'voters']
+            l.push(theuser.username)
+            const mq2 = `UPDATE tldrbites SET upvotes = $1, ${keyword}voters = $2 WHERE id = $3`
+            const result2 = await db.query(mq2, [currentvotes + inc, '{' + l.join(',') + '}', x.id])
         }
     }
 }
 
-const reviewpageget = async (req, res) => {
-    bookid = req.params.bookid
+// adding to reading lists
+const addwish = async (req, res) => {
     if (theuser == undefined) {
-        urlinit = `/reviewpage/${bookid}`
         res.redirect('/login')
     } else {
-        res.render('reviewpage.html', {root: path.join(__dirname, '../public'), id: parseInt(bookid), head: partialbeginloggedin, footer: partialfooter, end: partialend})
-    }
-}
+        x = req.body;
 
-const profileget = async (req, res) => {
-    res.render('profile.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedin, footer: partialfooter, end: partialend})
-}
+        const mq1 = 'SELECT wishlist FROM users WHERE username = $1;'
+        const result1 = await db.query(mq1, [theuser.username])
 
-const usertags = async (req, res) => {
-    if (theuser == undefined) {
-        urlinit = '/usertags'
-        res.redirect('/login')
-    } else {
-        const mq = 'SELECT tags0, tags1, tags2, tags3, tags4 FROM users WHERE username = $1'
-        const result = await db.query(mq, [theuser.username])
-        res.send(result.rows);
+        if (typeof(x.bookid) == 'number' && !result1.rows[0].wishlist.includes(x.bookid)) {
+            const mq = 'UPDATE users SET wishlist = array_append(wishlist, $1) WHERE username = $2;'
+            await db.query(mq, [x.bookid, theuser.username])
+        }
     }
 };
+
+const addliked = async (req, res) => {
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+
+        const mq1 = 'SELECT hasliked FROM users WHERE username = $1;'
+        const result1 = await db.query(mq1, [theuser.username])
+
+        if (typeof(x.bookid) == 'number' && !result1.rows[0].hasliked.includes(x.bookid)) {
+            const mq = 'UPDATE users SET hasliked = array_append(hasliked, $1) WHERE username = $2;'
+            await db.query(mq, [x.bookid, theuser.username])
+        }
+    }
+};
+
+const adddisliked = async (req, res) => {
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+
+        const mq1 = 'SELECT hasdisliked FROM users WHERE username = $1;'
+        const result1 = await db.query(mq1, [theuser.username])
+
+        if (typeof(x.bookid) == 'number' && !result1.rows[0].hasdisliked.includes(x.bookid)) {
+            const mq = 'UPDATE users SET hasdisliked = array_append(hasdisliked, $1) WHERE username = $2;'
+            await db.query(mq, [x.bookid, theuser.username])
+        }
+    }
+};
+
+// profiles and profile updating
+const profileget = async (req, res) => {
+    if (theuser == undefined) {
+        urlinit = '/profile'
+        res.redirect('/login')
+    } else {
+        res.render('profile.html', {root: path.join(__dirname, '../public'), head: partialbeginloggedin, footer: partialfooter, end: partialend})
+    }
+}
 
 const submittier = async (req, res) => {
     if (theuser == undefined) {
@@ -489,7 +625,55 @@ const submittier = async (req, res) => {
         res.send(x);
     }
 };
-  
+
+const submitlists = async (req, res) => {
+    if (theuser == undefined) {
+        res.redirect('/login')
+    } else {
+        x = req.body;
+        wish = (x.wish.length == 0) ? '{}' : `{${x.wish.join(',')}}`
+        liked = (x.liked.length == 0) ? '{}' : `{${x.liked.join(',')}}`
+        disliked = (x.disliked.length == 0) ? '{}' : `{${x.disliked.join(',')}}`
+        const mq = 'UPDATE users SET wishlist = $1, hasliked = $2, hasdisliked = $3 WHERE username = $4'
+        await db.query(mq, [wish, liked, disliked, theuser.username])
+        res.send(x);
+    }
+};
+
+// information or database searches dependent on user (non-dependents are in server.js)
+const usertags = async (req, res) => {
+    if (theuser == undefined) {
+        urlinit = '/usertags'
+        res.redirect('/login')
+    } else {
+        const mq = 'SELECT tags0, tags1, tags2, tags3, tags4 FROM users WHERE username = $1'
+        const result = await db.query(mq, [theuser.username])
+        res.send(result.rows);
+    }
+};
+
+const userlists = async (req, res) => {
+    if (theuser == undefined) {
+        urlinit = '/usertags'
+        res.redirect('/login')
+    } else {
+        const mq = 'SELECT wishlist, hasliked, hasdisliked FROM users WHERE username = $1'
+        const result = await db.query(mq, [theuser.username])
+        res.send(result.rows);
+    }
+};
+
+const userratings = async (req, res) => {
+    if (theuser == undefined) {
+        urlinit = '/userratings'
+        res.redirect('/login')
+    } else {
+        const mq = 'SELECT book, stars FROM ratings WHERE username = $1'
+        const result = await db.query(mq, [theuser.username])
+        res.send(result.rows);
+    }
+};
+
 // Export of all methods as object 
 module.exports = { 
     indexget,
@@ -499,7 +683,6 @@ module.exports = {
     loginget,
     loginpost,
     reviewsget,
-    reviewspost,
     homeget,
     homepost,
     addbookpost,
@@ -507,5 +690,15 @@ module.exports = {
     ratebookpost,
     profileget,
     usertags,
-    submittier
+    submittier,
+    addwish,
+    addliked,
+    adddisliked,
+    userlists,
+    submitlists,
+    userratings,
+    submitstarspost,
+    submittldrpost,
+    votetldr,
+    analysebookpost
 }

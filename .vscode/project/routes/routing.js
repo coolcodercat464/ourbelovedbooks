@@ -23,20 +23,30 @@ router.get('/login', control.loginget);
 router.post('/login', control.loginpost)
 
 router.get('/reviews', control.reviewsget);
-router.post('/reviews', control.reviewspost);
 
 router.get('/home', control.homeget);
 router.post('/home', control.homepost);
 
 router.post('/addbook', control.addbookpost);
 router.post('/ratebook', control.ratebookpost);
+router.post('/submitstars', control.submitstarspost)
+router.post('/submittldr', control.submittldrpost)
+router.post('/votetldr', control.votetldr)
+router.post('/analysebook', control.analysebookpost)
+
+router.post('/addwish', control.addwish)
+router.post('/addliked', control.addliked)
+router.post('/adddisliked', control.adddisliked)
 
 router.get('/reviewpage/:bookid', control.reviewpageget);
 
 router.get('/profile', control.profileget);
 router.post('/submittier', control.submittier)
+router.post('/submitlists', control.submitlists)
 
 router.get('/usertags', control.usertags)
+router.get('/userlists', control.userlists)
+router.get('/userratings', control.userratings)
 
 module.exports = router;
 

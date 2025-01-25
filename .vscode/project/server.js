@@ -39,8 +39,8 @@ app.use(bodyParser.urlencoded({extended: true}));         // use bodyparser
 const db = require('./databases/postgres.js')             // database stuff
 
 // get and post routing
-app.get(['/', '/login', '/signup', '/reviews', '/tos', '/home', '/reviewpage/:bookid', '/profile', '/usertags'], routes)
-app.post(['/', '/login', '/signup', '/reviews', '/home', '/addbook', '/reviewpage/:bookid', '/ratebook', '/submittier'], routes)
+app.get(['/', '/login', '/signup', '/reviews', '/tos', '/home', '/reviewpage/:bookid', '/profile', '/usertags', '/userlists', '/userratings'], routes)
+app.post(['/', '/login', '/signup', '/reviews', '/home', '/addbook', '/reviewpage/:bookid', '/ratebook', '/submittier', '/addwish', '/addliked', '/adddisliked', '/submitlists', '/submitstars', '/submittldr', '/votetldr', '/analysebook'], routes)
 
 // send db information
 app.get('/allusernames', (req, res) => {
@@ -103,6 +103,34 @@ app.get('/allreviews', (req, res) => {
 
 app.get('/allauthors', (req, res) => {
   const query = 'SELECT author FROM books;';
+
+  db.query(query, (error, result) => {
+    if (error) {
+      console.error('Error occurred:', error);
+      res.status(500).send('An error occurred while retrieving data from the database.');
+    } else {
+      const results = result.rows;
+      res.json(results);
+    }
+  });
+});
+
+app.get('/alltldrs', (req, res) => {
+  const query = 'SELECT * FROM tldrbites;';
+
+  db.query(query, (error, result) => {
+    if (error) {
+      console.error('Error occurred:', error);
+      res.status(500).send('An error occurred while retrieving data from the database.');
+    } else {
+      const results = result.rows;
+      res.json(results);
+    }
+  });
+});
+
+app.get('/allsnas', (req, res) => {
+  const query = 'SELECT * FROM sna;';
 
   db.query(query, (error, result) => {
     if (error) {
